@@ -2,9 +2,9 @@ import React, { createContext } from "react";
 
 import { MainContextProps, MainProviderProps } from "./MainContextTypes";
 import useAuth from "../hooks/useAuth";
-
 import { handleSignIn, handleSignUp, handleSignOut } from "./AuthFunctions";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+
+import PageLoading from "../components/PageLoading/PageLoading";
 
 export const MainContext = createContext<MainContextProps | null>(null);
 
@@ -20,12 +20,7 @@ export default function MainProvider({ children }: MainProviderProps) {
     setInitializing,
   } = useAuth();
 
-  if (loading || initializing)
-    return (
-      <div className="w-screen h-screen flex justify-center items-center">
-        <LoadingSpinner />
-      </div>
-    );
+  if (loading || initializing) return <PageLoading />;
 
   return (
     <MainContext.Provider
