@@ -9,6 +9,8 @@ import Layout from "./Layout";
 import Articles from "./pages/Articles";
 import Users from "./pages/Users";
 import Auth from "./pages/Auth";
+import Profile from "./pages/Profile";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +19,14 @@ export const router = createBrowserRouter(
       <Route path="/articles" element={<Articles />} />
       <Route path="/users" element={<Users />} />
       <Route path="/auth" element={<Auth />} />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
     </Route>
   )
 );
