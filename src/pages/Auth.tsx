@@ -25,7 +25,7 @@ export default function Auth() {
 
   return (
     <div className="w-screen h-[100dvh] bg-white fixed top-0 left-0 flex flex-col justify-center items-center z-[999] px-5">
-      <div className="w-full flex flex-col justify-center items-center gap-10">
+      <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col justify-center items-center gap-10">
         <AuthFormTitle isSignedIn={isSignedIn} />
         <AuthForm
           formField={formField}

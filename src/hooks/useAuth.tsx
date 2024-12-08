@@ -2,11 +2,12 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { UserProps } from "../context/MainContextTypes";
 import { auth, db } from "../config/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 
 export default function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState<UserProps | null>(null);
+  const [userList, setUserList] = useState<UserProps[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [initializing, setInitializing] = useState(true);
 
@@ -33,7 +34,18 @@ export default function useAuth() {
       }
     });
 
-    return () => userUnsubscribe();
+    const userListUnsubscribe = onSnapshot(collection(db, "users"), (users) => {
+      const usersData: UserProps[] = [];
+      users.forEach((user) => {
+        usersData.push(user.data() as UserProps);
+      });
+      setUserList(usersData);
+    });
+
+    return () => {
+      userListUnsubscribe();
+      userUnsubscribe();
+    };
   }, [user]);
 
   return {
@@ -41,6 +53,8 @@ export default function useAuth() {
     setUser,
     currentUser,
     setCurrentUser,
+    userList,
+    setUserList,
     loading,
     setLoading,
     initializing,

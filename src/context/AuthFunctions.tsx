@@ -26,6 +26,7 @@ export type SignOutProps = {
   setCurrentUser: React.Dispatch<SetStateAction<UserProps | null>>;
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
   navigate: NavigateFunction;
+  setOpenDropdown: React.Dispatch<SetStateAction<boolean>>;
 };
 
 export const handleSignUp = async ({
@@ -89,10 +90,12 @@ export const handleSignOut = async ({
   setCurrentUser,
   setInitializing,
   navigate,
+  setOpenDropdown,
 }: SignOutProps) => {
   await signOut(auth);
   setInitializing(true);
   setUser(null);
   setCurrentUser(null);
+  setOpenDropdown(false);
   navigate("/auth");
 };

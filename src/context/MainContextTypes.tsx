@@ -1,6 +1,7 @@
 import { User } from "firebase/auth";
 import React, { SetStateAction } from "react";
 import { AuthProps, SignOutProps } from "./AuthFunctions";
+import { CreateArticleProps } from "./ArticleFunctions";
 
 export type UserProps = {
   id: string;
@@ -13,15 +14,31 @@ export type UserProps = {
   role: string;
 };
 
+export type ArticleProps = {
+  id: string;
+  title: string;
+  img: string;
+  text: string;
+  author: string;
+};
+
 export type MainContextProps = {
   user: User | null;
   setUser: React.Dispatch<SetStateAction<User | null>>;
   currentUser: UserProps | null;
   setCurrentUser: React.Dispatch<SetStateAction<UserProps | null>>;
+  userList: UserProps[] | null;
+  setUserList: React.Dispatch<SetStateAction<UserProps[] | null>>;
   loading: boolean;
   setLoading: React.Dispatch<SetStateAction<boolean>>;
   initializing: boolean;
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
+
+  articles: ArticleProps[];
+  setArticles: React.Dispatch<SetStateAction<ArticleProps[]>>;
+
+  openDropdown: boolean;
+  setOpenDropdown: React.Dispatch<SetStateAction<boolean>>;
 
   handleSignIn: ({
     email,
@@ -42,7 +59,15 @@ export type MainContextProps = {
     setCurrentUser,
     setInitializing,
     navigate,
+    setOpenDropdown,
   }: SignOutProps) => void;
+
+  CreateArticle: ({
+    title,
+    img,
+    text,
+    currentUser,
+  }: CreateArticleProps) => Promise<void>;
 };
 export type MainProviderProps = {
   children: React.ReactNode;

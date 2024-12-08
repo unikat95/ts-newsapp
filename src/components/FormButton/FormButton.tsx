@@ -14,7 +14,6 @@ export default function FormButton({
 }: FormButtonProps) {
   return (
     <button
-      type="button"
       className="w-full bg-black text-white px-3 py-2 rounded-md flex justify-center items-center gap-2"
       onClick={onClick}
     >

@@ -18,7 +18,7 @@ export default function AuthFormInput({
       type={type}
       name={type}
       placeholder={placeholder}
-      className="w-full border-l-[3px] focus:border-blue-500 outline-none px-2 py-3 rounded-sm"
+      className="w-full bg-neutral-100 border-l-[3px] focus:border-blue-500 outline-none px-2 py-3 rounded-sm autofill:bg-neutral-100"
       value={formField}
       onChange={handleInputChange}
     />
