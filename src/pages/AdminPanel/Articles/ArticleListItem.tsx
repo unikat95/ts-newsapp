@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+
 import { ArticleProps, UserProps } from "../../../context/MainContextTypes";
+import { Link } from "react-router-dom";
 
 type ArticleListItemProps = {
   article: ArticleProps;
@@ -10,24 +12,19 @@ export default function ArticleListItem({
   article,
   author,
 }: ArticleListItemProps) {
-  const [openText, setOpenText] = useState(false);
-
-  const handleOpenText = () => {
-    setOpenText(!openText);
-  };
   return (
     <>
-      <div
+      <Link
+        to={`/articles/article/${article.id}`}
         key={article.id}
         className="w-full flex flex-col justify-between border px-4 py-2 gap-5 cursor-pointer"
-        onClick={handleOpenText}
       >
         <div className="flex justify-between">
           <h1>{article.title}</h1>
           <p>{author?.firstName}</p>
+          <p>{new Date(article.createdAt).toLocaleString()}</p>
         </div>
-      </div>
-      {openText && <div className="border px-4 py-2">{article.text}</div>}
+      </Link>
     </>
   );
 }

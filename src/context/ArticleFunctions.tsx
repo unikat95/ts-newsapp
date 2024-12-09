@@ -24,6 +24,7 @@ export const CreateArticle = async ({
       img: img,
       text: text,
       author: currentUser.id,
+      createdAt: new Date().toISOString(),
     };
 
     await setDoc(doc(db, "articles", articleId), articleData);

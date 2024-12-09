@@ -104,6 +104,33 @@ input:-webkit-autofill:focus {
   box-shadow: none;
 }
 
+.animate-menu {
+  interpolate-size: allow-keywords;
+  transition: width 1s ease;
+}
+
+.jodit-toolbar__box {
+  top: 0rem !important;
+}
+
+.jodit-toolbar-editor-collection {
+  background: white;
+}
+
+.jodit-wysiwyg {
+  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
+  color: rgb(51 65 85 / var(--tw-text-opacity));
+  padding: 1rem !important;
+}
+
+.jodit-status-bar {
+  display: none;
+}
+
+.jodit-add-new-line {
+  display: none;
+}
+
 @keyframes loading-bar-anim {
   0% {
     width: 0%;

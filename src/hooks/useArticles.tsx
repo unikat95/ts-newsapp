@@ -5,6 +5,9 @@ import { db } from "../config/firebase";
 
 export default function useArticles() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
+  const sortedArticles = articles.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
 
   useEffect(() => {
     const articleUnsubscribe = onSnapshot(
@@ -21,5 +24,5 @@ export default function useArticles() {
     return () => articleUnsubscribe();
   }, []);
 
-  return { articles, setArticles };
+  return { articles, setArticles, sortedArticles };
 }

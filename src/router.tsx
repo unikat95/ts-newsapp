@@ -17,12 +17,16 @@ import ArticleList from "./pages/AdminPanel/Articles/ArticleList";
 import Archive from "./pages/AdminPanel/Articles/Archive";
 import UserList from "./pages/AdminPanel/Users/UserList";
 import Administrators from "./pages/AdminPanel/Users/Administrators";
+import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
+import Article from "./pages/Article";
+import User from "./pages/User";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="/articles" element={<Articles />} />
+      <Route path="/articles/article/:id" element={<Article />} />
       <Route path="/users" element={<Users />} />
       <Route path="/auth" element={<Auth />} />
       <Route
@@ -33,8 +37,9 @@ export const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+      <Route path="/user/:id" element={<User />} />
       <Route path="/admin-panel" element={<AdminPanel />}>
-        <Route index element={<>Admin Panel</>} />
+        <Route index element={<AdminPanelHome />} />
         <Route path="create-article" element={<CreateArticle />} />
         <Route path="article-list" element={<ArticleList />} />
         <Route path="archive" element={<Archive />} />

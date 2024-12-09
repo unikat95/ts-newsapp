@@ -23,9 +23,10 @@ export default function MainProvider({ children }: MainProviderProps) {
     setLoading,
     initializing,
     setInitializing,
+    sortedUsers,
   } = useAuth();
 
-  const { articles, setArticles } = useArticles();
+  const { articles, setArticles, sortedArticles } = useArticles();
 
   const [openDropdown, setOpenDropdown] = useState(false);
 
@@ -47,6 +48,9 @@ export default function MainProvider({ children }: MainProviderProps) {
 
         articles,
         setArticles,
+
+        sortedArticles,
+        sortedUsers,
 
         openDropdown,
         setOpenDropdown,

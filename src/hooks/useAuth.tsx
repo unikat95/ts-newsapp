@@ -11,6 +11,10 @@ export default function useAuth() {
   const [loading, setLoading] = useState(true);
   const [initializing, setInitializing] = useState(true);
 
+  const sortedUsers = userList?.sort(
+    (a, b) => new Date(b.joinedAt).getTime() - new Date(a.joinedAt).getTime()
+  );
+
   useEffect(() => {
     const userUnsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -59,5 +63,6 @@ export default function useAuth() {
     setLoading,
     initializing,
     setInitializing,
+    sortedUsers,
   };
 }

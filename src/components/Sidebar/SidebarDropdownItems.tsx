@@ -1,6 +1,5 @@
 import { FaListAlt, FaArchive } from "react-icons/fa";
-
-import { FaPenToSquare } from "react-icons/fa6";
+import { FaPenToSquare, FaListUl } from "react-icons/fa6";
 
 export const articleDropdownItems = [
   {
@@ -28,12 +27,6 @@ export const usersDropdownItems = [
     id: 1,
     text: "User list",
     to: "/admin-panel/user-list",
-    Icon: FaListAlt,
-  },
-  {
-    id: 2,
-    text: "Administrators",
-    to: "/admin-panel/user-ranks",
-    Icon: FaListAlt,
+    Icon: FaListUl,
   },
 ];

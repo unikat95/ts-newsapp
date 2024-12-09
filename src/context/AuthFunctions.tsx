@@ -8,7 +8,6 @@ import { auth, db } from "../config/firebase";
 import React, { SetStateAction } from "react";
 import { NavigateFunction } from "react-router-dom";
 
-import { v4 as uuidv4 } from "uuid";
 import { doc, setDoc } from "firebase/firestore";
 import { UserProps } from "./MainContextTypes";
 
@@ -42,7 +41,7 @@ export const handleSignUp = async ({
     .then((userCred) => {
       const userId = userCred.user.uid;
       const userData = {
-        id: uuidv4(),
+        id: userId,
         email: email,
         firstName: "",
         lastName: "",
@@ -50,6 +49,7 @@ export const handleSignUp = async ({
         birthDate: "",
         completed: false,
         role: "User",
+        joinedAt: new Date().toISOString(),
       };
 
       setDoc(doc(db, "users", userId), userData);

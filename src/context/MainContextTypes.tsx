@@ -12,6 +12,7 @@ export type UserProps = {
   birthDate: string;
   completed: false;
   role: string;
+  joinedAt: Date;
 };
 
 export type ArticleProps = {
@@ -20,6 +21,7 @@ export type ArticleProps = {
   img: string;
   text: string;
   author: string;
+  createdAt: Date;
 };
 
 export type MainContextProps = {
@@ -36,6 +38,9 @@ export type MainContextProps = {
 
   articles: ArticleProps[];
   setArticles: React.Dispatch<SetStateAction<ArticleProps[]>>;
+
+  sortedArticles: ArticleProps[];
+  sortedUsers: UserProps[] | undefined;
 
   openDropdown: boolean;
   setOpenDropdown: React.Dispatch<SetStateAction<boolean>>;

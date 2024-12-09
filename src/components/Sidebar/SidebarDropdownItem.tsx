@@ -1,4 +1,5 @@
 import React from "react";
+
 import { IconType } from "react-icons";
 import { Link, useLocation } from "react-router-dom";
 
@@ -24,14 +25,14 @@ export default function SidebarDropdownItem({
     >
       <Link
         to={to}
-        className={`hover:bg-neutral-200 hover:text-black flex justify-start items-center gap-3 px-5 py-3 rounded-md text-sm ${
-          location.pathname === to
-            ? "bg-neutral-200 text-black"
-            : "bg-neutral-800"
+        className={`hover:bg-slate-700 text-white flex justify-between items-center gap-3 px-5 py-3 rounded-lg ${
+          location.pathname === to && "bg-slate-700"
         }`}
       >
-        <Icon />
-        {text}
+        <div className="flex justify-center items-center gap-5">
+          <Icon size={16} />
+          <div className="text-sm font-light">{text}</div>
+        </div>
       </Link>
     </li>
   );

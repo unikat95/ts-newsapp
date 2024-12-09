@@ -3,17 +3,18 @@ import React, { useState } from "react";
 import SidebarDropdown from "./SidebarDropdown";
 import SidebarDropdownItem from "./SidebarDropdownItem";
 
-import { MdArticle } from "react-icons/md";
 import { IconType } from "react-icons";
 
 type SidebarMenuItemProps = {
   name: string;
   dropdownItems: { id: number; text: string; to: string; Icon: IconType }[];
+  Icon: IconType;
 };
 
 export default function SidebarMenuItem({
   name,
   dropdownItems,
+  Icon,
 }: SidebarMenuItemProps) {
   const [openDropdown, setOpenDropdown] = useState(false);
 
@@ -25,7 +26,7 @@ export default function SidebarMenuItem({
       name={name}
       openDropdown={openDropdown}
       handleOpenDropdown={handleOpenDropdown}
-      Icon={MdArticle}
+      Icon={Icon}
     >
       {dropdownItems.map((item) => (
         <SidebarDropdownItem

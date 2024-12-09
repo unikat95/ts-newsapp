@@ -1,5 +1,6 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useMemo, useState } from "react";
 import useMainContext from "../../../hooks/useMainContext";
+import JoditEditor from "jodit-react";
 
 export default function CreateArticle() {
   const [formField, setFormField] = useState({
@@ -16,6 +17,13 @@ export default function CreateArticle() {
     setFormField((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleEditorChange = (newText: string) => {
+    setFormField((prev) => ({
+      ...prev,
+      text: newText,
     }));
   };
 
@@ -46,7 +54,7 @@ export default function CreateArticle() {
           type="text"
           name="title"
           placeholder="enter tritle..."
-          className="w-full border focus:border-blue-500 p-3 outline-none"
+          className="w-full border-2 focus:border-2 focus:border-blue-500 p-3 outline-none rounded-md"
           onChange={handleInputChange}
           value={formField.title}
         />
@@ -54,19 +62,25 @@ export default function CreateArticle() {
           type="text"
           name="img"
           placeholder="image url..."
-          className="w-full border focus:border-blue-500 p-3 outline-none"
+          className="w-full border-2 focus:border-2 focus:border-blue-500 p-3 outline-none rounded-md"
           onChange={handleInputChange}
           value={formField.img}
         />
-        <textarea
-          name="text"
-          cols={30}
-          rows={10}
-          placeholder="enter text..."
-          className="w-full border focus:border-blue-500 p-3 outline-none"
-          onChange={handleInputChange}
+        <JoditEditor
+          config={useMemo(
+            () => ({
+              readonly: false,
+              placeholder: "text...",
+              minHeight: 413,
+              defaultLineHeight: 1.3,
+              sticky: false,
+              required: true,
+            }),
+            []
+          )}
           value={formField.text}
-        ></textarea>
+          onChange={handleEditorChange}
+        />
         <button
           className="bg-black text-white px-4 py-2 rounded-md"
           onClick={handleSubmit}
