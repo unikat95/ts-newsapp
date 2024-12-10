@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 
 import SidebarDropdown from "./SidebarDropdown";
 import SidebarDropdownItem from "./SidebarDropdownItem";
@@ -9,12 +9,14 @@ type SidebarMenuItemProps = {
   name: string;
   dropdownItems: { id: number; text: string; to: string; Icon: IconType }[];
   Icon: IconType;
+  setOpenMenu: React.Dispatch<SetStateAction<boolean>>;
 };
 
 export default function SidebarMenuItem({
   name,
   dropdownItems,
   Icon,
+  setOpenMenu,
 }: SidebarMenuItemProps) {
   const [openDropdown, setOpenDropdown] = useState(false);
 
@@ -35,6 +37,7 @@ export default function SidebarMenuItem({
           text={item.text}
           to={item.to}
           Icon={item.Icon}
+          setOpenMenu={setOpenMenu}
         />
       ))}
     </SidebarDropdown>

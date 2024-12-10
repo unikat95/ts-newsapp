@@ -28,6 +28,7 @@ export const router = createBrowserRouter(
       <Route path="/articles" element={<Articles />} />
       <Route path="/articles/article/:id" element={<Article />} />
       <Route path="/users" element={<Users />} />
+      <Route path="/users/user/:id" element={<User />} />
       <Route path="/auth" element={<Auth />} />
       <Route
         path="/profile"
@@ -37,7 +38,6 @@ export const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
-      <Route path="/user/:id" element={<User />} />
       <Route path="/admin-panel" element={<AdminPanel />}>
         <Route index element={<AdminPanelHome />} />
         <Route path="create-article" element={<CreateArticle />} />

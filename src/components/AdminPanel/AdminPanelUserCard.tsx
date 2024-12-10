@@ -9,13 +9,13 @@ export default function AdminPanelUserCard() {
   return (
     <div className="flex flex-col justify-between items-start gap-5">
       <div className="w-full h-full bg-white rounded-xl shadow-sm flex flex-col justify-start items-start relative p-5 gap-5">
-        <div className="absolute -top-7 right-5">
+        <div className="absolute -top-7 right-3">
           {currentUser?.avatar !== "" ? (
-            <div className="w-16 h-16 bg-zinc-400 text-white text-2xl rounded-full flex justify-center items-center overflow-hidden border-[5px] border-slate-200">
+            <div className="w-20 h-20 bg-zinc-400 text-white text-2xl rounded-2xl flex justify-center items-center overflow-hidden border-[10px] border-slate-200">
               <img src={currentUser?.avatar} alt="" />
             </div>
           ) : (
-            <div className="w-16 h-16 bg-zinc-400 text-white text-2xl rounded-full flex justify-center items-center">
+            <div className="w-20 h-20 bg-zinc-400 text-white text-2xl rounded-full flex justify-center items-center">
               {currentUser?.firstName.slice(0, 1)}
               {currentUser?.lastName.slice(0, 1)}
             </div>

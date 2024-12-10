@@ -2,6 +2,10 @@ import React from "react";
 
 import { PiSpinnerBold } from "react-icons/pi";
 
-export default function LoadingSpinner() {
-  return <PiSpinnerBold className="animate-spin" />;
+type LoadingSpinnerProps = {
+  size: number;
+};
+
+export default function LoadingSpinner({ size }: LoadingSpinnerProps) {
+  return <PiSpinnerBold size={size} className="animate-spin" />;
 }

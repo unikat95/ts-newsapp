@@ -26,7 +26,15 @@ export default function MainProvider({ children }: MainProviderProps) {
     sortedUsers,
   } = useAuth();
 
-  const { articles, setArticles, sortedArticles } = useArticles();
+  const {
+    articles,
+    setArticles,
+    category,
+    setCategory,
+    sortedArticles,
+    isModalOpen,
+    setIsModalOpen,
+  } = useArticles();
 
   const [openDropdown, setOpenDropdown] = useState(false);
 
@@ -48,6 +56,10 @@ export default function MainProvider({ children }: MainProviderProps) {
 
         articles,
         setArticles,
+        category,
+        setCategory,
+        isModalOpen,
+        setIsModalOpen,
 
         sortedArticles,
         sortedUsers,

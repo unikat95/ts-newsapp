@@ -15,6 +15,15 @@ export type UserProps = {
   joinedAt: Date;
 };
 
+export type CommentProps = {
+  id: string;
+  msg: string;
+  author: string;
+  createdAt: Date;
+  likes: [];
+  replies: [];
+};
+
 export type ArticleProps = {
   id: string;
   title: string;
@@ -22,6 +31,8 @@ export type ArticleProps = {
   text: string;
   author: string;
   createdAt: Date;
+  category: string;
+  comments: CommentProps[];
 };
 
 export type MainContextProps = {
@@ -38,6 +49,10 @@ export type MainContextProps = {
 
   articles: ArticleProps[];
   setArticles: React.Dispatch<SetStateAction<ArticleProps[]>>;
+  category: string;
+  setCategory: React.Dispatch<SetStateAction<string>>;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
 
   sortedArticles: ArticleProps[];
   sortedUsers: UserProps[] | undefined;

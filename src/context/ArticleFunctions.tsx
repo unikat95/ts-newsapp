@@ -8,6 +8,7 @@ export type CreateArticleProps = {
   img: string;
   text: string;
   currentUser: UserProps | null;
+  category: string;
 };
 
 export const CreateArticle = async ({
@@ -15,6 +16,7 @@ export const CreateArticle = async ({
   img,
   text,
   currentUser,
+  category,
 }: CreateArticleProps) => {
   if (currentUser) {
     const articleId = uuidv4();
@@ -25,6 +27,8 @@ export const CreateArticle = async ({
       text: text,
       author: currentUser.id,
       createdAt: new Date().toISOString(),
+      category: category,
+      comments: [],
     };
 
     await setDoc(doc(db, "articles", articleId), articleData);

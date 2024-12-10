@@ -34,6 +34,7 @@
 html,
 body {
   min-height: -webkit-fill-available;
+  interpolate-size: allow-keywords;
 }
 
 body {
@@ -105,7 +106,6 @@ input:-webkit-autofill:focus {
 }
 
 .animate-menu {
-  interpolate-size: allow-keywords;
   transition: width 1s ease;
 }
 
@@ -118,7 +118,7 @@ input:-webkit-autofill:focus {
 }
 
 .jodit-wysiwyg {
-  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
+  background-color: white;
   color: rgb(51 65 85 / var(--tw-text-opacity));
   padding: 1rem !important;
 }

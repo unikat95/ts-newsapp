@@ -1,5 +1,6 @@
 import React from "react";
 import { UserProps } from "../../context/MainContextTypes";
+import { Link } from "react-router-dom";
 
 type AdminPanelLastUser = {
   user: UserProps;
@@ -8,7 +9,10 @@ type AdminPanelLastUser = {
 export default function AdminPanelLastUser({ user }: AdminPanelLastUser) {
   return (
     <>
-      <div className="w-full h-auto bg-white flex flex-col justify-end items-center p-5 gap-5 rounded-lg relative overflow-hidden">
+      <Link
+        to={`/users/user/${user.id}`}
+        className="w-full h-auto bg-white flex flex-col justify-end items-center p-5 gap-5 rounded-lg relative overflow-hidden cursor-pointer"
+      >
         {user.avatar ? (
           <img
             src={user.avatar}
@@ -28,11 +32,8 @@ export default function AdminPanelLastUser({ user }: AdminPanelLastUser) {
           </p>
           <p className="text-orange-500 text-sm font-bold">{user.role}</p>
         </div>
-        <p className="text-slate-500 text-base font-semibold line-clamp-1 z-10">
-          {user.email}
-        </p>
         <span className="w-[30rem] h-[30rem] bg-stone-50 absolute rotate-[60deg] -top-[26rem] -left-20 z-0"></span>
-      </div>
+      </Link>
     </>
   );
 }

@@ -5,6 +5,9 @@ import { db } from "../config/firebase";
 
 export default function useArticles() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
+  const [category, setCategory] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const sortedArticles = articles.sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
@@ -24,5 +27,13 @@ export default function useArticles() {
     return () => articleUnsubscribe();
   }, []);
 
-  return { articles, setArticles, sortedArticles };
+  return {
+    articles,
+    setArticles,
+    category,
+    setCategory,
+    sortedArticles,
+    isModalOpen,
+    setIsModalOpen,
+  };
 }

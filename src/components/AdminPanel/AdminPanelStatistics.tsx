@@ -7,12 +7,13 @@ import { FaQuoteLeft } from "react-icons/fa";
 
 import AdminPanelStatisticsItem from "./AdminPanelStatisticsItem";
 import AdminPanelUserCard from "./AdminPanelUserCard";
+import AdminPanelHeader from "./AdminPanelHeader";
 
 export default function AdminPanelStatistics() {
   const { articles, userList } = useMainContext();
   return (
     <>
-      <h1 className="text-2xl font-semibold">Welcome Back!</h1>
+      <AdminPanelHeader text="Welcome Back!" />
       <div className="w-full h-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
         <AdminPanelUserCard />
         <AdminPanelStatisticsItem
