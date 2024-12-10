@@ -1,13 +1,14 @@
 import React from "react";
+
 import { useParams } from "react-router-dom";
 import useMainContext from "../hooks/useMainContext";
 import ArticleTitle from "../components/Article/ArticleTitle";
 import ArticleImg from "../components/Article/ArticleImg";
 import ArticleText from "../components/Article/ArticleText";
-import ArticleSidebar from "../components/Article/ArticleSidebar";
 import ArticleAuthor from "../components/Article/ArticleAuthor";
 import useLoading from "../hooks/useLoading";
 import AdminPanelLoading from "../components/AdminPanel/AdminPanelLoading";
+import ArticleSidebar from "../components/Article/ArticleSidebar";
 
 export default function Article() {
   const { id } = useParams();

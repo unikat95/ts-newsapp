@@ -2,7 +2,7 @@ import React, { ChangeEventHandler } from "react";
 
 type CreateArticleInputProps = {
   handleInputChange: ChangeEventHandler<HTMLInputElement>;
-  formField: string;
+  formField: string | undefined;
   name: string;
   placeholder: string;
 };

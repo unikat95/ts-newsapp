@@ -20,6 +20,7 @@ import Administrators from "./pages/AdminPanel/Users/Administrators";
 import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
 import Article from "./pages/Article";
 import User from "./pages/User";
+import EditArticle from "./pages/AdminPanel/Articles/EditArticle";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,7 @@ export const router = createBrowserRouter(
       <Route path="/admin-panel" element={<AdminPanel />}>
         <Route index element={<AdminPanelHome />} />
         <Route path="create-article" element={<CreateArticle />} />
+        <Route path="edit-article/:id" element={<EditArticle />} />
         <Route path="article-list" element={<ArticleList />} />
         <Route path="archive" element={<Archive />} />
         <Route path="user-list" element={<UserList />} />

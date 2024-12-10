@@ -13,12 +13,14 @@ type AdminPanelArticleDropdownProps = {
   to: string;
   handleToggleOpen: () => void;
   article: ArticleProps;
+  onDelete: (articleId: string) => void;
 };
 
 export default function AdminPanelArticleDropdown({
   to,
   handleToggleOpen,
   article,
+  onDelete,
 }: AdminPanelArticleDropdownProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,6 +36,7 @@ export default function AdminPanelArticleDropdown({
   const handleDeleteArticle = async () => {
     try {
       await deleteDoc(doc(db, "articles", article.id));
+      onDelete(article.id);
     } catch (error) {
       console.log(error);
     } finally {
@@ -56,13 +59,14 @@ export default function AdminPanelArticleDropdown({
             </Link>
           </li>
           <li className="w-full rounded-md overflow-hidden">
-            <button
+            <Link
+              to={`/admin-panel/edit-article/${article.id}`}
               className="w-full hover:bg-slate-100 flex justify-start items-center gap-2 px-2 py-2"
               onClick={handleToggleOpen}
             >
               <FaRegEdit size={17} />
               Edit article
-            </button>
+            </Link>
           </li>
           <li className="w-full rounded-md overflow-hidden">
             <button
@@ -75,12 +79,11 @@ export default function AdminPanelArticleDropdown({
           </li>
         </ul>
         {isModalOpen && (
-          <div className="w-full h-full bg-black bg-opacity-10 flex justify-center items-center fixed top-0 left-0 z-[999]">
+          <div className="w-full h-full bg-black bg-opacity-20 flex justify-center items-center fixed top-0 left-0 z-[999]">
             <div className="w-auto h-auto bg-white p-5 rounded-md flex flex-col justify-center items-center gap-7">
               <div className="text-sm">
                 <p>Are you sure you want to delete the article?</p>
                 <p> This action cannot be undone.</p>
-                <p>Article: {article.title}</p>
               </div>
               <div className="w-full flex items-end justify-end gap-2">
                 <button
@@ -90,7 +93,7 @@ export default function AdminPanelArticleDropdown({
                   Cancel
                 </button>
                 <button
-                  className="bg-zinc-800 hover:bg-red-500 px-4 py-2 text-white rounded-md text-sm"
+                  className="hover:bg-red-500 px-4 py-2 hover:text-white rounded-md text-sm"
                   onClick={handleDeleteArticle}
                 >
                   Delete

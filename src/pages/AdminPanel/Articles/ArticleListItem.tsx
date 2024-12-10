@@ -6,9 +6,13 @@ import AdminPanelArticleDropdown from "../../../components/AdminPanel/AdminPanel
 
 type ArticleListItemProps = {
   article: ArticleProps;
+  onDelete: (articleId: string) => void;
 };
 
-export default function ArticleListItem({ article }: ArticleListItemProps) {
+export default function ArticleListItem({
+  article,
+  onDelete,
+}: ArticleListItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -36,14 +40,22 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
     <>
       <div
         key={article.id}
-        className="w-full h-auto flex flex-col justify-between px-4 py-3 gap-5 border-b rounded-md group relative .user-dropdown"
+        className="w-full h-auto flex flex-col justify-between px-4 py-3 gap-5 border rounded-md group relative .user-dropdown"
         ref={dropdownRef}
       >
-        <div className="w-full grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_auto] justify-start items-center gap-5">
-          <h1 className="text-sm group-hover:underline">{article.title}</h1>
+        <div className="w-full grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto_auto] justify-start items-center gap-5">
+          <img
+            src={article.img}
+            alt=""
+            className="w-10 h-8 rounded-md object-cover"
+          />
+          <h1 className="text-sm group-hover:underline line-clamp-2">
+            {article.title}
+          </h1>
           <p className="text-sm hidden md:block">
             {new Date(article.createdAt).toLocaleString()}
           </p>
+
           <button
             className="w-7 h-7 hover:bg-zinc-200 flex justify-center items-center rounded-full"
             onClick={handleToggleOpen}
@@ -56,6 +68,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
             to={article.id}
             handleToggleOpen={handleToggleOpen}
             article={article}
+            onDelete={onDelete}
           />
         )}
       </div>
