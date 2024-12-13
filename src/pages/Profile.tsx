@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import useMainContext from "../hooks/useMainContext";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import LoadingBar from "../components/LoadingBar/LoadingBar";
+import useLoading from "../hooks/useLoading";
+import APLoading from "../components/AdminPanel/APLoading";
 
 export default function Profile() {
   const [loading, setLoading] = useState(false);
@@ -30,6 +32,9 @@ export default function Profile() {
     setLoading(false);
   };
 
+  const loader = useLoading();
+  if (loader) return <APLoading />;
+
   return (
     <div className="flex flex-col justify-start items-start gap-5">
       Welcome {currentUser?.email}
@@ -38,7 +43,7 @@ export default function Profile() {
           onClick={handleLogout}
           className="bg-black text-white px-3 py-1 rounded-md flex justify-center items-center gap-2"
         >
-          Logout {loading && <LoadingSpinner />}
+          Logout {loading && <LoadingSpinner size={13} />}
         </button>
         <Link
           to="/profile/messages"

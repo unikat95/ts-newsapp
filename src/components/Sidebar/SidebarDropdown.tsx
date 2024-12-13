@@ -22,7 +22,7 @@ export default function SidebarDropdown({
       <button
         onClick={handleOpenDropdown}
         className={`
-        hover:bg-slate-800 flex justify-between items-center px-5 py-3 gap-2 rounded-lg
+        hover:bg-secondary flex justify-between items-center px-5 py-3 gap-2 rounded-lg
         `}
       >
         <div className="w-full h-full flex justify-start items-center gap-5">

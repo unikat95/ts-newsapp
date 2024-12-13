@@ -12,13 +12,13 @@ type SidebarMenuItemProps = {
   setOpenMenu: React.Dispatch<SetStateAction<boolean>>;
 };
 
-export default function SidebarMenuItem({
+export default function SidebarItem({
   name,
   dropdownItems,
   Icon,
   setOpenMenu,
 }: SidebarMenuItemProps) {
-  const [openDropdown, setOpenDropdown] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(true);
 
   const handleOpenDropdown = () => {
     setOpenDropdown(!openDropdown);

@@ -10,6 +10,8 @@ export default function useAuth() {
   const [userList, setUserList] = useState<UserProps[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [initializing, setInitializing] = useState(true);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editLoading, setEditLoading] = useState(false);
 
   const sortedUsers = userList?.sort(
     (a, b) => new Date(b.joinedAt).getTime() - new Date(a.joinedAt).getTime()
@@ -64,5 +66,9 @@ export default function useAuth() {
     initializing,
     setInitializing,
     sortedUsers,
+    isEditModalOpen,
+    setIsEditModalOpen,
+    editLoading,
+    setEditLoading,
   };
 }

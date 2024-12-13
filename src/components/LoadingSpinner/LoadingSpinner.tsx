@@ -1,11 +1,11 @@
 import React from "react";
 
-import { PiSpinnerBold } from "react-icons/pi";
+import { CgSpinner } from "react-icons/cg";
 
 type LoadingSpinnerProps = {
   size: number;
 };
 
 export default function LoadingSpinner({ size }: LoadingSpinnerProps) {
-  return <PiSpinnerBold size={size} className="animate-spin" />;
+  return <CgSpinner size={size} className="animate-spin text-sky-500" />;
 }

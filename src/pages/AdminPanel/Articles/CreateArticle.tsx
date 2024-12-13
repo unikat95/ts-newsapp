@@ -1,13 +1,16 @@
 import React, { ChangeEvent, useMemo, useState } from "react";
 
+import { IoMdCreate } from "react-icons/io";
+
 import JoditEditor from "jodit-react";
 import useMainContext from "../../../hooks/useMainContext";
 import useLoading from "../../../hooks/useLoading";
-import AdminPanelHeader from "../../../components/AdminPanel/AdminPanelHeader";
 import ArticleCategories from "../../../components/ArticleCategories/ArticleCategories";
 import CreateArticleInput from "../../../components/CreateArticle/CreateArticleInput";
-import AdminPanelLoading from "../../../components/AdminPanel/AdminPanelLoading";
-import { PuffLoader } from "react-spinners";
+import APLoading from "../../../components/AdminPanel/APLoading";
+import CTAButton from "../../../components/CTAButton/CTAButton";
+import CreateArticleLoader from "../../../components/CreateArticle/CreateArticleLoader";
+import APHeading from "../../../components/AdminPanel/APHeading";
 
 export default function CreateArticle() {
   const [formField, setFormField] = useState({
@@ -63,12 +66,12 @@ export default function CreateArticle() {
     []
   );
 
-  if (loading) return <AdminPanelLoading />;
+  if (loading) return <APLoading />;
 
   return (
-    <div className="w-full h-[100dvh] p-5 flex flex-col gap-5">
-      <form className="w-full h-full bg-white flex flex-col justify-start items-end gap-5 p-5 rounded-xl relative">
-        <AdminPanelHeader text="Create article" />
+    <div className="w-full h-[100dvh] flex flex-col gap-5">
+      <form className="w-full h-full bg-white flex flex-col justify-start items-end gap-5 p-5 relative">
+        <APHeading text="Create article" />
         <div className="w-full h-full flex flex-col gap-5 overflow-auto">
           <CreateArticleInput
             handleInputChange={handleInputChange}
@@ -89,20 +92,16 @@ export default function CreateArticle() {
             onChange={handleEditorChange}
           />
         </div>
-        <button
-          className="bg-black text-white px-4 py-2 rounded-md disabled:cursor-not-allowed disabled:bg-slate-400"
-          onClick={handleSubmit}
+        <CTAButton
+          handleSubmit={handleSubmit}
+          text="Create article"
+          Icon={IoMdCreate}
           disabled={
             !formField.title || !formField.img || !formField.text || !category
           }
-        >
-          Create article
-        </button>
-        {isCreating && (
-          <div className="w-full h-full bg-white bg-opacity-40 flex justify-center items-center absolute top-0 left-0">
-            <PuffLoader color="#5ac3f8" />
-          </div>
-        )}
+          variant="dark"
+        />
+        {isCreating && <CreateArticleLoader />}
       </form>
     </div>
   );

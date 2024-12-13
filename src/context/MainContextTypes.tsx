@@ -1,7 +1,7 @@
 import { User } from "firebase/auth";
 import React, { SetStateAction } from "react";
 import { AuthProps, SignOutProps } from "./AuthFunctions";
-import { CreateArticleProps } from "./ArticleFunctions";
+import { CreateArticleProps, HandleLikePostProps } from "./ArticleFunctions";
 
 export type UserProps = {
   id: string;
@@ -24,6 +24,10 @@ export type CommentProps = {
   replies: [];
 };
 
+export type LikeProps = {
+  whoLiked: string;
+};
+
 export type ArticleProps = {
   id: string;
   title: string;
@@ -33,6 +37,7 @@ export type ArticleProps = {
   createdAt: Date;
   category: string;
   comments: CommentProps[];
+  likes: LikeProps[];
 };
 
 export type MainContextProps = {
@@ -46,6 +51,10 @@ export type MainContextProps = {
   setLoading: React.Dispatch<SetStateAction<boolean>>;
   initializing: boolean;
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
+  isEditModalOpen: boolean;
+  setIsEditModalOpen: React.Dispatch<SetStateAction<boolean>>;
+  editLoading: boolean;
+  setEditLoading: React.Dispatch<SetStateAction<boolean>>;
 
   articles: ArticleProps[];
   setArticles: React.Dispatch<SetStateAction<ArticleProps[]>>;
@@ -53,12 +62,17 @@ export type MainContextProps = {
   setCategory: React.Dispatch<SetStateAction<string>>;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
+  categoryToDisplay: string;
+  setCategoryToDisplay: React.Dispatch<SetStateAction<string>>;
 
   sortedArticles: ArticleProps[];
   sortedUsers: UserProps[] | undefined;
 
   openDropdown: boolean;
   setOpenDropdown: React.Dispatch<SetStateAction<boolean>>;
+
+  pageLoading: boolean;
+  setPageLoading: React.Dispatch<SetStateAction<boolean>>;
 
   handleSignIn: ({
     email,
@@ -88,6 +102,14 @@ export type MainContextProps = {
     text,
     currentUser,
   }: CreateArticleProps) => Promise<void>;
+  handleLikePost: ({
+    currentUser,
+    setLikeLoading,
+    liked,
+    setLiked,
+    article,
+    likeRef,
+  }: HandleLikePostProps) => Promise<void>;
 };
 export type MainProviderProps = {
   children: React.ReactNode;

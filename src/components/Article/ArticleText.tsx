@@ -2,9 +2,13 @@ import HTMLReactParser from "html-react-parser/lib/index";
 import React from "react";
 
 type ArticleTextProps = {
-  text: string;
+  text: string | undefined;
 };
 
 export default function ArticleText({ text }: ArticleTextProps) {
-  return <div className="text-zinc-800">{HTMLReactParser(text)}</div>;
+  return (
+    <div className="text-secondary-text leading-7">
+      {HTMLReactParser(text || "")}
+    </div>
+  );
 }

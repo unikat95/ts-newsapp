@@ -38,7 +38,7 @@ export default function Navbar({ navbarHeight, setNavbarHeight }: NavbarProps) {
   return (
     <nav
       ref={navRef}
-      className="w-full bg-white flex flex-col justify-center items-center fixed top-0 left-0 px-5 py-5 border-b"
+      className="w-full bg-white flex flex-col justify-center items-center fixed top-0 left-0 px-5 py-3 border-b z-50"
     >
       <div className="w-full max-w-[1400px] flex justify-between items-center">
         <NavbarLogo />

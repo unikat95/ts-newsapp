@@ -1,9 +1,13 @@
 import React from "react";
 
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import useMainContext from "../../hooks/useMainContext";
 
 export default function AdminPanel() {
+  const { currentUser } = useMainContext();
+
+  if (currentUser?.role !== "administrator") return <Navigate to="/" />;
   return (
     <div className="w-full h-full flex">
       <Sidebar />

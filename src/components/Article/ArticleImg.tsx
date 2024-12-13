@@ -1,7 +1,7 @@
 import React from "react";
 
 type ArticleImgProps = {
-  img: string;
+  img: string | undefined;
 };
 
 export default function ArticleImg({ img }: ArticleImgProps) {
@@ -9,7 +9,7 @@ export default function ArticleImg({ img }: ArticleImgProps) {
     <img
       src={img}
       alt="article_image"
-      className="w-full h-80 object-cover rounded-xl"
+      className="w-full h-80 object-cover"
     ></img>
   );
 }

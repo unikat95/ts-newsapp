@@ -1,18 +1,18 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 
-import HTMLReactParser from "html-react-parser/lib/index";
-
 import useMainContext from "../hooks/useMainContext";
-import AdminPanelHeader from "../components/AdminPanel/AdminPanelHeader";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
-import { ArticleCategoryList } from "../components/ArticleCategories/ArticleCategoriesList";
-import { Link } from "react-router-dom";
 import ArticleCard from "../components/Article/ArticleCard";
+import APHeading from "../components/AdminPanel/APHeading";
+import useLoading from "../hooks/useLoading";
+import APLoading from "../components/AdminPanel/APLoading";
+import ArticlesCategory from "../components/ArticlesCategory/ArticlesCategory";
 
 export default function Articles() {
-  const { sortedArticles } = useMainContext();
-  const [currentCategory, setCurrentCategory] = useState<string>("");
+  const { sortedArticles, categoryToDisplay } = useMainContext();
+  const [currentCategory, setCurrentCategory] =
+    useState<string>(categoryToDisplay);
 
   const [artLoading, setArtLoading] = useState(true);
 
@@ -22,7 +22,7 @@ export default function Articles() {
 
   useEffect(() => {
     if (artLoading) {
-      const timeout = setTimeout(() => setArtLoading(false), 300);
+      const timeout = setTimeout(() => setArtLoading(false), 500);
 
       return () => clearTimeout(timeout);
     }
@@ -36,29 +36,23 @@ export default function Articles() {
   const articlesToDisplay =
     currentCategory !== "" ? sortedByCategory : sortedArticles;
 
+  const loading = useLoading();
+  if (loading) return <APLoading />;
+
   return (
     <div className="w-full h-auto flex flex-col justify-start items-start gap-5">
       <div className="w-full flex justify-between items-center">
-        <AdminPanelHeader text="Article list" />
-        <select
-          name="category"
-          onChange={handleCategoryChange}
-          className="w-auto bg-zinc-900 text-white border border-r-[12px] border-zinc-900 px-3 py-2 outline-none rounded-md"
-          value={currentCategory}
-        >
-          <option value="">All categories</option>
-          {ArticleCategoryList.map((cat) => (
-            <option key={cat.id} value={cat.value}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
+        <APHeading text="Article list" />
+        <ArticlesCategory
+          currentCategory={currentCategory}
+          handleCategoryChange={handleCategoryChange}
+        />
       </div>
       {!artLoading ? (
         <>
           {articlesToDisplay.length <= 0 ? (
             <div className="w-full flex justify-start items-start">
-              There are no posts in this category.
+              There are no articles in this category.
             </div>
           ) : (
             articlesToDisplay.map((article) => (
@@ -68,7 +62,7 @@ export default function Articles() {
         </>
       ) : (
         <div className="w-full h-auto flex justify-center items-center p-5">
-          <LoadingSpinner size={20} />
+          <LoadingSpinner size={24} />
         </div>
       )}
     </div>

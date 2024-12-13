@@ -28,8 +28,8 @@ export default function SidebarDropdownItem({
     >
       <Link
         to={to}
-        className={`hover:bg-slate-800 text-white flex justify-between items-center gap-3 px-5 py-3 rounded-lg ${
-          location.pathname === to && "bg-slate-800"
+        className={`hover:bg-secondary text-white flex justify-between items-center gap-3 px-5 py-3 rounded-lg ${
+          location.pathname === to && "bg-secondary"
         }`}
       >
         <div className="flex justify-center items-center gap-5">

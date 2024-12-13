@@ -1,21 +1,21 @@
 import React from "react";
 
-import AdminPanelStatistics from "../../components/AdminPanel/AdminPanelStatistics";
-import AdminPanelLastArticles from "../../components/AdminPanel/AdminPanelLastArticles";
-import AdminPanelLastUsers from "../../components/AdminPanel/AdminPanelLastUsers";
 import useLoading from "../../hooks/useLoading";
-import AdminPanelLoading from "../../components/AdminPanel/AdminPanelLoading";
+import APStatistics from "../../components/AdminPanel/APStatistics";
+import APLastArticles from "../../components/AdminPanel/APLastArticles";
+import APLastUsers from "../../components/AdminPanel/APLastUsers";
+import APLoading from "../../components/AdminPanel/APLoading";
 
 export default function AdminPanelHome() {
   const loading = useLoading();
 
-  if (loading) return <AdminPanelLoading />;
+  if (loading) return <APLoading />;
 
   return (
     <div className="w-full h-auto flex flex-col justify-start items-start gap-5 p-5 overflow-auto">
-      <AdminPanelStatistics />
-      <AdminPanelLastArticles />
-      <AdminPanelLastUsers />
+      <APStatistics />
+      <APLastArticles />
+      <APLastUsers />
     </div>
   );
 }

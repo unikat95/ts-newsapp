@@ -18,7 +18,7 @@ export default function FormButton({
       onClick={onClick}
     >
       {text}
-      {loading && <LoadingSpinner />}
+      {loading && <LoadingSpinner size={13} />}
     </button>
   );
 }

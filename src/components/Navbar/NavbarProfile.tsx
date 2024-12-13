@@ -22,7 +22,11 @@ export default function NavbarProfile() {
       >
         <div className="uppercase font-medium">
           {currentUser?.avatar ? (
-            <img src={currentUser.avatar} alt="avatar"></img>
+            <img
+              src={currentUser.avatar}
+              alt="avatar"
+              className="object-cover"
+            />
           ) : currentUser?.firstName === "" || currentUser?.lastName === "" ? (
             currentUser.email.slice(0, 1)
           ) : (

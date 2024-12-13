@@ -17,11 +17,12 @@ export default function NavbarItem({
   const handleCloseMenu = () => {
     setOpenMenu(false);
   };
+
   return (
     <li className={`w-full md:w-auto ${hidden && "md:hidden"}`}>
       <NavLink
         to={to}
-        className="w-full md:w-auto bg-slate-200 md:bg-transparent flex justify-center items-center text-2xl md:text-base font-medium text-neutral-600 py-3 md:py-0"
+        className="w-full md:w-auto  md:bg-transparent flex justify-center items-center text-2xl md:text-base font-medium text-neutral-600 py-3 md:py-0 aria-[current=page]:text-orange-600"
         onClick={handleCloseMenu}
       >
         {text}

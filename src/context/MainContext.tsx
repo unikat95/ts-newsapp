@@ -4,7 +4,7 @@ import { MainContextProps, MainProviderProps } from "./MainContextTypes";
 import useAuth from "../hooks/useAuth";
 
 import { handleSignIn, handleSignUp, handleSignOut } from "./AuthFunctions";
-import { CreateArticle } from "./ArticleFunctions";
+import { CreateArticle, handleLikePost } from "./ArticleFunctions";
 
 import PageLoading from "../components/PageLoading/PageLoading";
 import useArticles from "../hooks/useArticles";
@@ -24,6 +24,10 @@ export default function MainProvider({ children }: MainProviderProps) {
     initializing,
     setInitializing,
     sortedUsers,
+    isEditModalOpen,
+    setIsEditModalOpen,
+    editLoading,
+    setEditLoading,
   } = useAuth();
 
   const {
@@ -34,7 +38,11 @@ export default function MainProvider({ children }: MainProviderProps) {
     sortedArticles,
     isModalOpen,
     setIsModalOpen,
+    categoryToDisplay,
+    setCategoryToDisplay,
   } = useArticles();
+
+  const [pageLoading, setPageLoading] = useState(true);
 
   const [openDropdown, setOpenDropdown] = useState(false);
 
@@ -53,6 +61,10 @@ export default function MainProvider({ children }: MainProviderProps) {
         setLoading,
         initializing,
         setInitializing,
+        isEditModalOpen,
+        setIsEditModalOpen,
+        editLoading,
+        setEditLoading,
 
         articles,
         setArticles,
@@ -60,6 +72,8 @@ export default function MainProvider({ children }: MainProviderProps) {
         setCategory,
         isModalOpen,
         setIsModalOpen,
+        categoryToDisplay,
+        setCategoryToDisplay,
 
         sortedArticles,
         sortedUsers,
@@ -70,8 +84,12 @@ export default function MainProvider({ children }: MainProviderProps) {
         handleSignIn,
         handleSignUp,
         handleSignOut,
+        handleLikePost,
 
         CreateArticle,
+
+        pageLoading,
+        setPageLoading,
       }}
     >
       {children}

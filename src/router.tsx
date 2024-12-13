@@ -43,6 +43,7 @@ export const router = createBrowserRouter(
         <Route index element={<AdminPanelHome />} />
         <Route path="create-article" element={<CreateArticle />} />
         <Route path="edit-article/:id" element={<EditArticle />} />
+        <Route path="edit-user/:id" element={<>Edit user</>} />
         <Route path="article-list" element={<ArticleList />} />
         <Route path="archive" element={<Archive />} />
         <Route path="user-list" element={<UserList />} />

@@ -1,9 +1,32 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 
-export default function ArticleSidebar() {
+import SidebarRecentArticles from "./SidebarRecentArticles";
+import SidebarCategories from "./SidebarCategories";
+import SidebarRecomendedArticles from "./SidebarRecommendedArticles";
+
+type ArticleSidebarProps = {
+  articleId: string;
+  articleCat: string;
+  setArticleLoading: React.Dispatch<SetStateAction<boolean>>;
+};
+
+export default function ArticleSidebar({
+  articleId,
+  articleCat,
+  setArticleLoading,
+}: ArticleSidebarProps) {
   return (
-    <div className="w-1/3 h-auto flex flex-col justify-start items-start">
-      Article Sidebar
+    <div className="w-full md:w-2/5 h-auto flex flex-col gap-10 justify-start items-start sticky top-[6.3rem]">
+      <SidebarRecentArticles
+        articleId={articleId}
+        setArticleLoading={setArticleLoading}
+      />
+      <SidebarCategories />
+      <SidebarRecomendedArticles
+        articleId={articleId}
+        articleCat={articleCat}
+        setArticleLoading={setArticleLoading}
+      />
     </div>
   );
 }

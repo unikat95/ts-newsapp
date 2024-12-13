@@ -1,7 +1,7 @@
 import React from "react";
 import useMainContext from "../../hooks/useMainContext";
 
-export default function AdminPanelNavbar() {
+export default function APNavbar() {
   const { currentUser } = useMainContext();
   return (
     <div className="w-full h-auto bg-zinc-800 px-5 py-5 text-white flex flex-col justify-center items-end">

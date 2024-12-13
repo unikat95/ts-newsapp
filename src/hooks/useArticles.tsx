@@ -7,6 +7,7 @@ export default function useArticles() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
   const [category, setCategory] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [categoryToDisplay, setCategoryToDisplay] = useState("");
 
   const sortedArticles = articles.sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -35,5 +36,7 @@ export default function useArticles() {
     sortedArticles,
     isModalOpen,
     setIsModalOpen,
+    categoryToDisplay,
+    setCategoryToDisplay,
   };
 }

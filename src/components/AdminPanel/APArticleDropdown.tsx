@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -8,20 +8,24 @@ import { RiExternalLinkFill } from "react-icons/ri";
 import { ArticleProps } from "../../context/MainContextTypes";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import APArticleModal from "./APArticleModal";
 
-type AdminPanelArticleDropdownProps = {
+export type APArticleDropdownProps = {
   to: string;
   handleToggleOpen: () => void;
   article: ArticleProps;
-  onDelete: (articleId: string) => void;
+  onDelete?: (articleId: string) => void;
+  link: string;
+  setIsOpen?: React.Dispatch<SetStateAction<boolean>>;
 };
 
-export default function AdminPanelArticleDropdown({
+export default function APArticleDropdown({
   to,
   handleToggleOpen,
   article,
   onDelete,
-}: AdminPanelArticleDropdownProps) {
+  link,
+}: APArticleDropdownProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -36,7 +40,9 @@ export default function AdminPanelArticleDropdown({
   const handleDeleteArticle = async () => {
     try {
       await deleteDoc(doc(db, "articles", article.id));
-      onDelete(article.id);
+      if (onDelete) {
+        onDelete(article.id);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -50,7 +56,7 @@ export default function AdminPanelArticleDropdown({
         <ul className="w-full text-sm flex flex-col justify-start items-start p-2 gap-1">
           <li className="w-full rounded-md overflow-hidden">
             <Link
-              to={`/articles/article/${to}`}
+              to={`${link}${to}`}
               className="w-full hover:bg-slate-100 flex justify-start items-center gap-2 px-2 py-2"
               onClick={handleToggleOpen}
             >
@@ -79,28 +85,10 @@ export default function AdminPanelArticleDropdown({
           </li>
         </ul>
         {isModalOpen && (
-          <div className="w-full h-full bg-black bg-opacity-20 flex justify-center items-center fixed top-0 left-0 z-[999]">
-            <div className="w-auto h-auto bg-white p-5 rounded-md flex flex-col justify-center items-center gap-7">
-              <div className="text-sm">
-                <p>Are you sure you want to delete the article?</p>
-                <p> This action cannot be undone.</p>
-              </div>
-              <div className="w-full flex items-end justify-end gap-2">
-                <button
-                  className="hover:bg-zinc-800 px-4 py-2 hover:text-white rounded-md text-sm"
-                  onClick={handleCloseModal}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="hover:bg-red-500 px-4 py-2 hover:text-white rounded-md text-sm"
-                  onClick={handleDeleteArticle}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
+          <APArticleModal
+            handleCloseModal={handleCloseModal}
+            handleDeleteArticle={handleDeleteArticle}
+          />
         )}
       </div>
     </>
