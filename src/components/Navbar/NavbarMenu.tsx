@@ -15,7 +15,7 @@ export default function NavbarMenu({ openMenu, setOpenMenu }: NavbarMenuProps) {
   return (
     <ul
       className={`
-  w-full h-full bg-slate-100 fixed top-0 left-0 flex flex-col justify-center items-center gap-2 md:gap-5 md:relative md:bg-transparent md:flex md:w-auto md:h-auto md:flex-row md:translate-x-0 md:transition-none px-10 md:p-0
+  w-full h-full bg-slate-100 fixed top-0 left-0 flex flex-col justify-center items-center gap-2 md:gap-10 md:relative md:bg-transparent md:flex md:w-auto md:h-auto md:flex-row md:translate-x-0 md:transition-none px-10 md:p-0
 
   ${
     openMenu ? "translate-x-0" : "translate-x-[200vw]"

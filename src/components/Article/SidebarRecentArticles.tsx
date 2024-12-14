@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import SidebarHeading from "./SidebarHeading";
 
 type RecentArticlesProps = {
-  articleId: string;
-  setArticleLoading: Dispatch<SetStateAction<boolean>>;
+  articleId?: string;
+  setArticleLoading?: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function SidebarRecentArticles({
@@ -26,18 +26,25 @@ export default function SidebarRecentArticles({
               to={`/articles/article/${art.id}`}
               key={art.id}
               className="w-full flex justify-center items-center gap-2 border-b first:border-t py-3 group"
-              onClick={() => setArticleLoading(true)}
+              onClick={() => setArticleLoading?.(true)}
             >
-              <div className="w-14 h-10 overflow-hidden">
-                <img
-                  src={art.img}
-                  alt="article_img"
-                  className="w-full h-full"
-                />
+              <div className="w-full flex justify-center items-center gap-2">
+                <div className="w-16 h-10 overflow-hidden">
+                  <img
+                    src={art.img}
+                    alt="article_img"
+                    className="w-full h-full"
+                  />
+                </div>
+                <p className="w-full line-clamp-1 group-hover:underline">
+                  {art.title}
+                </p>
+                <div className="w-auto">
+                  <p className="text-sm">
+                    {new Date(art.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
               </div>
-              <p className="w-full line-clamp-2 group-hover:underline">
-                {art.title}
-              </p>
             </Link>
           ))
           .slice(0, 3)}

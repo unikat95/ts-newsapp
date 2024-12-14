@@ -2,7 +2,7 @@ import React from "react";
 
 import { FaUser, FaRegCommentDots } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
-import { BiLinkExternal, BiSolidCategoryAlt } from "react-icons/bi";
+import { BiSolidCategoryAlt } from "react-icons/bi";
 
 import HTMLReactParser from "html-react-parser/lib/index";
 import { Link } from "react-router-dom";
@@ -20,9 +20,9 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <div
       key={article.id}
-      className="w-full grid grid-cols-1 md:grid-cols-[auto_1fr] border-t pt-5 last:border-b last:pb-5 gap-5 group"
+      className="w-full grid grid-cols-1 md:grid-cols-[auto_1fr] border-b pb-5 gap-5 group"
     >
-      <div className="w-full md:w-[16rem] md:h-full md:max-h-[14rem] overflow-hidden">
+      <div className="w-full md:w-[16rem] h-[14rem] overflow-hidden">
         <img
           src={article.img}
           alt=""
@@ -44,8 +44,8 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             {HTMLReactParser(article.text)}
           </div>
         </div>
-        <div className="w-full flex justify-between items-end">
-          <div className="text-sm text-slate-600 font-medium flex flex-col justify-start items-start lg:flex-row gap-2 lg:gap-5">
+        <div className="w-full flex justify-between items-center">
+          <div className="text-sm text-slate-600 font-medium flex flex-col justify-start items-start xl:flex-row gap- xl:gap-5">
             <div className="flex flex-col md:flex-row justify-center items-start md:items-center gap-1 text-tertiary-text">
               <div className="flex justify-center items-center gap-1">
                 <FaUser size={12} />
@@ -74,13 +74,6 @@ export default function ArticleCard({ article }: ArticleCardProps) {
                 0<FaRegCommentDots />
               </div>
             </div>
-            <Link
-              to={`/articles/article/${article.id}`}
-              className="text-secondary-text hover:text-primary underline flex justify-center items-center gap-1"
-            >
-              Read more
-              <BiLinkExternal size={16} />
-            </Link>
           </div>
         </div>
       </div>

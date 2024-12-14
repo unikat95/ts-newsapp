@@ -1,1 +1,1 @@
-export const DisabledNavbarPath = ["/admin-panel"];
+export const DisabledNavbarPath = ["/admin-panel", "/xd"];

@@ -2,7 +2,7 @@ import React from "react";
 
 import useMainContext from "../../hooks/useMainContext";
 
-import { IoIosArrowDown } from "react-icons/io";
+import { IoMdArrowDropdown } from "react-icons/io";
 import NavbarDropdown from "./NavbarDropdown";
 
 export default function NavbarProfile() {
@@ -17,7 +17,7 @@ export default function NavbarProfile() {
   return (
     <div className="relative user-dropdown hidden md:block">
       <div
-        className="w-14 h-14 bg-neutral-100 rounded-full flex justify-center items-center overflow-hidden text-xl cursor-pointer border-[5px] border-neutral-200 hover:brightness-95 duration-75"
+        className="w-14 h-14 bg-neutral-100 rounded-full flex justify-center items-center overflow-hidden text-xl cursor-pointer border-[5px] border-neutral-100 shadow-md hover:brightness-105 duration-75"
         onClick={handleToggleDropdown}
       >
         <div className="uppercase font-medium">
@@ -36,8 +36,8 @@ export default function NavbarProfile() {
           )}
         </div>
       </div>
-      <div className="absolute bg-white text-neutral-500 rounded-md shadow-md bottom-1 right-1 cursor-pointer">
-        <IoIosArrowDown />
+      <div className="absolute bg-white text-neutral-800 rounded-sm shadow-md bottom-0 right-1 cursor-pointer">
+        <IoMdArrowDropdown />
       </div>
       {openDropdown && <NavbarDropdown />}
     </div>

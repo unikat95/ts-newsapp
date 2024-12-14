@@ -21,6 +21,7 @@ import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
 import Article from "./pages/Article";
 import User from "./pages/User";
 import EditArticle from "./pages/AdminPanel/Articles/EditArticle";
+import Xd from "./pages/Xd";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ export const router = createBrowserRouter(
       <Route path="/articles/article/:id" element={<Article />} />
       <Route path="/users" element={<Users />} />
       <Route path="/users/user/:id" element={<User />} />
+      <Route path="/xd" element={<Xd />} />
       <Route path="/auth" element={<Auth />} />
       <Route
         path="/profile"

@@ -53,3 +53,25 @@ export const getCategoriesColor = (color: string) => {
       return "bg-teal-600 text-teal-50";
   }
 };
+
+export const getHeadingColor = (color: string) => {
+  switch (color) {
+    case "dark":
+      return "bg-black text-white";
+    case "light":
+      return "bg-whitetext-black";
+    case "yellow":
+      return "bg-yellow-500 text-white";
+  }
+};
+
+export const getHeadingBorder = (color: string) => {
+  switch (color) {
+    case "dark":
+      return "border-black";
+    case "light":
+      return "border-white";
+    case "yellow":
+      return "border-yellow-500";
+  }
+};

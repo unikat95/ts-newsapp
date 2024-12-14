@@ -16,7 +16,7 @@ export default function ArticleList() {
   const [articlesToDisplay, setArticlesToDisplay] = useState(sortedArticles);
 
   const loading = useLoading();
-  if (loading) return <APLoading />;
+  if (loading || !sortedArticles) return <APLoading />;
 
   const handleArticleDelete = async (articleId: string) => {
     setArtLoading(true);
