@@ -1,26 +1,29 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 
 import { IoIosClose } from "react-icons/io";
-import useMainContext from "../../hooks/useMainContext";
 
 type ModalProps = {
   children: React.ReactNode;
   isOpen?: boolean;
   closeIcon?: boolean;
+  setCloseModal?: React.Dispatch<SetStateAction<boolean>>;
 };
 
-export default function Modal({ children, isOpen, closeIcon }: ModalProps) {
-  const { setIsEditModalOpen } = useMainContext();
-
+export default function Modal({
+  children,
+  isOpen,
+  closeIcon,
+  setCloseModal,
+}: ModalProps) {
   const handleCloseModal = () => {
-    setIsEditModalOpen(false);
+    setCloseModal?.(false);
   };
 
   return (
     <>
       {isOpen && (
-        <div className="w-screen h-[100dvh] bg-black bg-opacity-30 fixed top-0 left-0 flex justify-center items-center z-[999]">
-          <div className="w-auto h-auto bg-white md:rounded-xl relative">
+        <div className="w-screen h-[100dvh] bg-black bg-opacity-30 fixed top-0 left-0 flex justify-center items-center z-[999] md:px-10">
+          <div className="w-auto h-auto bg-white md:rounded-xl relative overflow-hidden">
             {children}
             {closeIcon && (
               <button

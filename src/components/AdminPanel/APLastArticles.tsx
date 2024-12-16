@@ -12,20 +12,22 @@ export default function APLastArticles() {
     <>
       <APHeading text="Last articles" />
 
-      <div className="w-full h-auto grid grid-cols-1 xl:grid-cols-2 flex-col gap-2">
+      <div className="w-full h-auto grid grid-cols-1 2xl:grid-cols-2 flex-col gap-2">
         {sortedArticles
           .map((article) => (
             <Link
               to={`/articles/article/${article.id}`}
               key={article.id}
-              className="w-full h-auto bg-white flex justify-between items-center rounded-lg overflow-hidden gap-5 group"
+              className="w-full h-auto bg-white flex justify-start items-center rounded-lg overflow-hidden group"
             >
-              <div className="w-auto flex justify-center items-center gap-5 p-5">
+              <div className="w-[10rem] h-full flex justify-start items-center5 p-5">
                 <img
                   src={article.img}
                   alt=""
-                  className="w-14 h-12 object-cover rounded-lg"
+                  className="w-full h-14 bg-cover rounded-lg"
                 />
+              </div>
+              <div className="w-full flex justify-start items-start">
                 <h3 className="w-full group-hover:underline line-clamp-1">
                   {article.title}
                 </h3>

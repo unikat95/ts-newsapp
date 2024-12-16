@@ -1,64 +1,52 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { ChangeEvent, useState } from "react";
+
 import useMainContext from "../hooks/useMainContext";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
-import LoadingBar from "../components/LoadingBar/LoadingBar";
 import useLoading from "../hooks/useLoading";
 import APLoading from "../components/AdminPanel/APLoading";
+import UserProfile from "../components/User/UserProfile/UserProfile";
+import EditBackgroundModal from "../components/User/EditBackgroundModal/EditBackgroundModal";
+import EditUserModal from "../components/User/EditUserModal/EditUserModal";
 
 export default function Profile() {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const {
-    currentUser,
-    setUser,
-    setCurrentUser,
-    setInitializing,
-    handleSignOut,
-    setOpenDropdown,
-  } = useMainContext();
-
-  const handleLogout = async () => {
-    setLoading(true);
-    await new Promise((res) => setTimeout(res, 1000));
-    handleSignOut({
-      setUser,
-      setCurrentUser,
-      setInitializing,
-      navigate,
-      setOpenDropdown,
-    });
-    setLoading(false);
-  };
+  const { currentUser } = useMainContext();
+  const [isUserBgEditing, setIsUserBgEditing] = useState(false);
+  const [isUserEditing, setIsUserEditing] = useState(false);
+  const [bgImage, setBgImage] = useState(currentUser?.userProfileBg);
 
   const loader = useLoading();
   if (loader) return <APLoading />;
 
+  const handleToggleUserBgEditor = () => {
+    setIsUserBgEditing(!isUserBgEditing);
+  };
+
+  const handleToggleUserEditor = () => {
+    setIsUserEditing(!isUserEditing);
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setBgImage(e.target.value);
+  };
+
   return (
-    <div className="flex flex-col justify-start items-start gap-5">
-      Welcome {currentUser?.email}
-      <div className="flex gap-2">
-        <button
-          onClick={handleLogout}
-          className="bg-black text-white px-3 py-1 rounded-md flex justify-center items-center gap-2"
-        >
-          Logout {loading && <LoadingSpinner size={13} />}
-        </button>
-        <Link
-          to="/profile/messages"
-          className="bg-neutral-300 text-black hover:bg-black hover:text-white px-3 py-1 rounded-md flex justify-center items-center gap-2"
-        >
-          Messages
-        </Link>
-        <Link
-          to="/admin-panel"
-          className="bg-neutral-300 text-black hover:bg-black hover:text-white px-3 py-1 rounded-md flex justify-center items-center gap-2 text-nowrap"
-        >
-          Admin Panel
-        </Link>
-      </div>
-      {loading && <LoadingBar />}
+    <div className="w-full h-full flex flex-col justify-start items-end gap-5">
+      <UserProfile
+        user={currentUser}
+        handleToggleUserBgEditor={handleToggleUserBgEditor}
+        handleToggleUserEditor={handleToggleUserEditor}
+      />
+      <EditBackgroundModal
+        isUserBgEditing={isUserBgEditing}
+        setIsUserBgEditing={setIsUserBgEditing}
+        bgImage={bgImage}
+        handleInputChange={handleInputChange}
+        handleToggleUserBgEditor={handleToggleUserBgEditor}
+      />
+      <EditUserModal
+        isUserEditing={!currentUser?.completed || isUserEditing}
+        setIsUserEditing={setIsUserEditing}
+        handleToggleUserEditor={handleToggleUserEditor}
+      />
     </div>
   );
 }

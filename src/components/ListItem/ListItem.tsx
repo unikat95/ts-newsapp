@@ -7,10 +7,12 @@ import React, {
 } from "react";
 
 import { ArticleProps, UserProps } from "../../context/MainContextTypes";
-import ListItemImg from "./ListItemImg";
 import ListItemText from "./ListItemText";
 import ListItemInfo from "./ListItemInfo";
 import ListItemDropdownButton from "./ListItemDropdownButton";
+import UserAvatar from "../User/UserAvatar/UserAvatar";
+import ListItemImg from "./ListItemImg";
+import { useLocation } from "react-router-dom";
 
 export type ListItemProps = {
   article?: ArticleProps | undefined;
@@ -34,6 +36,7 @@ export default function ListItem({
 }: ArticleListItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   const handleToggleOpen = () => {
     setIsOpen(!isOpen);
@@ -63,7 +66,11 @@ export default function ListItem({
         ref={dropdownRef}
       >
         <div className="w-full grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto_auto] justify-start items-center gap-5">
-          <ListItemImg article={article} user={user} />
+          {location.pathname.includes("user-list") ? (
+            <UserAvatar size="xs" user={user} />
+          ) : (
+            <ListItemImg article={article} user={user} />
+          )}
           <ListItemText article={article} user={user} />
           <ListItemInfo article={article} user={user} />
           <ListItemDropdownButton handleToggleOpen={handleToggleOpen} />

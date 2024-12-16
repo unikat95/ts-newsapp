@@ -16,7 +16,6 @@ export type AuthProps = {
   password: string;
   setLoading: React.Dispatch<SetStateAction<boolean>>;
   navigate: NavigateFunction;
-  currentUser: UserProps | null;
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
 };
 
@@ -33,7 +32,6 @@ export const handleSignUp = async ({
   password,
   setLoading,
   navigate,
-  currentUser,
   setInitializing,
 }: AuthProps) => {
   setLoading(true);
@@ -50,11 +48,12 @@ export const handleSignUp = async ({
         completed: false,
         role: "User",
         joinedAt: new Date().toISOString(),
+        userProfileBg: "",
       };
 
       setDoc(doc(db, "users", userId), userData);
 
-      currentUser && navigate("/profile");
+      navigate("/profile");
       setLoading(false);
       setInitializing(true);
     })
@@ -69,13 +68,12 @@ export const handleSignIn = async ({
   password,
   setLoading,
   navigate,
-  currentUser,
   setInitializing,
 }: AuthProps) => {
   setLoading(true);
   await signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-      currentUser?.completed ? navigate("/") : navigate("/profile");
+      navigate("/");
       setLoading(false);
       setInitializing(true);
     })

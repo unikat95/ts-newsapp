@@ -4,6 +4,7 @@ import useMainContext from "../../hooks/useMainContext";
 
 import { IoMdArrowDropdown } from "react-icons/io";
 import NavbarDropdown from "./NavbarDropdown";
+import UserAvatar from "../User/UserAvatar/UserAvatar";
 
 export default function NavbarProfile() {
   const handleToggleDropdown = (e: React.MouseEvent) => {
@@ -11,32 +12,17 @@ export default function NavbarProfile() {
     setOpenDropdown(!openDropdown);
   };
 
-  const { openDropdown, setOpenDropdown } = useMainContext();
+  const { openDropdown, setOpenDropdown, currentUser } = useMainContext();
 
-  const { currentUser } = useMainContext();
   return (
     <div className="relative user-dropdown hidden md:block">
       <div
-        className="w-14 h-14 bg-neutral-100 rounded-full flex justify-center items-center overflow-hidden text-xl cursor-pointer border-[5px] border-neutral-100 shadow-md hover:brightness-105 duration-75"
+        className=" bg-neutral-100 rounded-full flex justify-center items-center overflow-hidden cursor-pointer hover:brightness-95 duration-100"
         onClick={handleToggleDropdown}
       >
-        <div className="uppercase font-medium">
-          {currentUser?.avatar ? (
-            <img
-              src={currentUser.avatar}
-              alt="avatar"
-              className="object-cover"
-            />
-          ) : currentUser?.firstName === "" || currentUser?.lastName === "" ? (
-            currentUser.email.slice(0, 1)
-          ) : (
-            currentUser?.firstName.slice(0, 1) +
-            "" +
-            currentUser?.lastName.slice(0, 1)
-          )}
-        </div>
+        <UserAvatar size="sm" user={currentUser} />
       </div>
-      <div className="absolute bg-white text-neutral-800 rounded-sm shadow-md bottom-0 right-1 cursor-pointer">
+      <div className="absolute bg-neutral-100 text-neutral-800 rounded-sm bottom-0 right-1 cursor-pointer z-[99]">
         <IoMdArrowDropdown />
       </div>
       {openDropdown && <NavbarDropdown />}

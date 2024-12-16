@@ -7,6 +7,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { UserProps } from "../../context/MainContextTypes";
 import { PuffLoader } from "react-spinners";
+import UserAvatar from "../User/UserAvatar/UserAvatar";
 
 type EditUserProps = {
   user: UserProps | null | undefined;
@@ -65,16 +66,15 @@ export default function EditUser({
 
     if (editUserRef) {
       try {
-        await updateDoc(editUserRef, {
-          firstName: formFields.firstName,
-          lastName: formFields.lastName,
-          avatar: formFields.avatar,
-          role: role,
-        });
-
         await new Promise((res) =>
           setTimeout(() => {
             res;
+            updateDoc(editUserRef, {
+              firstName: formFields.firstName,
+              lastName: formFields.lastName,
+              avatar: formFields.avatar,
+              role: role,
+            });
             setIsEditing(false);
             setIsEditModalOpen(false);
             setEditLoading(true);
@@ -107,12 +107,8 @@ export default function EditUser({
     <div className="w-full h-full flex flex-col p-5">
       <form className="w-full h-auto flex flex-col justify-end items-end gap-10 relative">
         <div className="w-full border rounded-md h-auto flex flex-col justify-center items-center gap-2 p-10">
-          <div className="w-40 h-40 rounded-full overflow-hidden mb-10">
-            <img
-              src={formFields.avatar === "" ? user?.avatar : formFields.avatar}
-              alt=""
-              className="w-full h-full object-cover"
-            />
+          <div className="w-full h-full rounded-full overflow-hidden mb-10 flex justify-center items-center">
+            <UserAvatar size="lg" user={user} />
           </div>
           <label
             htmlFor="firstName"

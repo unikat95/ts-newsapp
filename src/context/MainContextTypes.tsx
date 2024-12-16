@@ -13,6 +13,7 @@ export type UserProps = {
   completed: false;
   role: string;
   joinedAt: Date;
+  userProfileBg: string;
 };
 
 export type CommentProps = {

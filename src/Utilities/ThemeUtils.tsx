@@ -75,3 +75,37 @@ export const getHeadingBorder = (color: string) => {
       return "border-yellow-500";
   }
 };
+
+export const getUserAvatarSize = (size: string) => {
+  switch (size) {
+    case "xs":
+      return "w-8 h-8 border-2";
+    case "sm":
+      return "w-12 h-12 border-4";
+    case "md":
+      return "w-32 h-32 border-[5px]";
+    case "lg":
+      return "w-48 h-48 border-[7px]";
+    case "xl":
+      return "w-52 h-52 border-8";
+    case "ap":
+      return "w-20 h-20 rounded-lg";
+  }
+};
+
+export const getUserAvatarFontSize = (size: string) => {
+  switch (size) {
+    case "xs":
+      return "text-base";
+    case "sm":
+      return "text-xl";
+    case "md":
+      return "text-5xl";
+    case "lg":
+      return "text-7xl";
+    case "xl":
+      return "text-7xl";
+    case "ap":
+      return "text-lg";
+  }
+};
