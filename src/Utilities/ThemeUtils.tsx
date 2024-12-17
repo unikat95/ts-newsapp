@@ -10,6 +10,16 @@ export const getIconStyles = (variant: string) => {
       return "text-yellow-400";
     case "blue":
       return "text-blue-400";
+    case "bg-green":
+      return "bg-green-200";
+    case "bg-red":
+      return "bg-red-100";
+    case "bg-orange":
+      return "bg-orange-100";
+    case "bg-yellow":
+      return "bg-yellow-100";
+    case "bg-blue":
+      return "bg-blue-100";
   }
 };
 
@@ -29,11 +39,11 @@ export const getButtonStyles = (variant: string) => {
 export const getRoleStyles = (variant: string | undefined) => {
   switch (variant) {
     case "administrator":
-      return "bg-orange-500 text-orange-50 px-3 py-1 rounded-md";
+      return "bg-amber-500 text-amber-50 px-3 py-1 rounded-md";
     case "moderator":
-      return "bg-green-500 text-green-50 px-3 py-1 rounded-md";
+      return "bg-lime-500 text-lime-50 px-3 py-1 rounded-md";
     case "user":
-      return "bg-slate-500 text-slate-50 px-3 py-1 rounded-md";
+      return "bg-stone-500 text-stone-50 px-3 py-1 rounded-md";
   }
 };
 
@@ -62,16 +72,11 @@ export const getHeadingColor = (color: string) => {
       return "bg-whitetext-black";
     case "yellow":
       return "bg-yellow-500 text-white";
-  }
-};
-
-export const getHeadingBorder = (color: string) => {
-  switch (color) {
-    case "dark":
+    case "border-dark":
       return "border-black";
-    case "light":
+    case "border-light":
       return "border-white";
-    case "yellow":
+    case "border-yellow":
       return "border-yellow-500";
   }
 };
@@ -83,7 +88,7 @@ export const getUserAvatarSize = (size: string) => {
     case "sm":
       return "w-12 h-12 border-4";
     case "md":
-      return "w-32 h-32 border-[5px]";
+      return "w-24 h-24 border-[5px]";
     case "lg":
       return "w-48 h-48 border-[7px]";
     case "xl":
@@ -100,7 +105,7 @@ export const getUserAvatarFontSize = (size: string) => {
     case "sm":
       return "text-xl";
     case "md":
-      return "text-5xl";
+      return "text-3xl";
     case "lg":
       return "text-7xl";
     case "xl":

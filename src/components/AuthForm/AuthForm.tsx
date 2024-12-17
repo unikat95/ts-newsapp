@@ -23,8 +23,7 @@ export default function AuthForm({
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { handleSignIn, handleSignUp, currentUser, setInitializing } =
-    useMainContext();
+  const { handleSignIn, handleSignUp, setInitializing } = useMainContext();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -44,7 +43,6 @@ export default function AuthForm({
         password: formField.password,
         setLoading,
         navigate,
-        currentUser,
         setInitializing,
       });
     } else {
@@ -53,7 +51,6 @@ export default function AuthForm({
         password: formField.password,
         setLoading,
         navigate,
-        currentUser,
         setInitializing,
       });
     }

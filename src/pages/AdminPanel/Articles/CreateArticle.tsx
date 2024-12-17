@@ -11,6 +11,7 @@ import APLoading from "../../../components/AdminPanel/APLoading";
 import CTAButton from "../../../components/CTAButton/CTAButton";
 import CreateArticleLoader from "../../../components/CreateArticle/CreateArticleLoader";
 import APHeading from "../../../components/AdminPanel/APHeading";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateArticle() {
   const [formField, setFormField] = useState({
@@ -18,10 +19,17 @@ export default function CreateArticle() {
     img: "",
     text: "",
   });
-  const { CreateArticle, currentUser, category, setCategory } =
-    useMainContext();
+  const {
+    CreateArticle,
+    currentUser,
+    category,
+    setCategory,
+    setShowPopup,
+    setPopupMessage,
+  } = useMainContext();
   const [isCreating, setIsCreating] = useState(false);
   const loading = useLoading();
+  const navigate = useNavigate();
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,6 +60,9 @@ export default function CreateArticle() {
     setFormField({ title: "", img: "", text: "" });
     setCategory("");
     setIsCreating(false);
+    setShowPopup(true);
+    setPopupMessage("Article successfully created");
+    navigate("/admin-panel/article-list");
   };
 
   const editorConfig = useMemo(

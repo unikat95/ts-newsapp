@@ -16,7 +16,7 @@ export default function ArticleSidebar({
   setArticleLoading,
 }: ArticleSidebarProps) {
   return (
-    <div className="w-full lg:w-3/5 xl:w-2/5 h-auto flex flex-col gap-10 justify-start items-start sticky top-[6.3rem]">
+    <div className="w-full lg:w-3/5 xl:w-2/5 h-auto flex flex-col gap-10 justify-start items-start sticky top-[7.3rem]">
       <SidebarRecentArticles
         articleId={articleId}
         setArticleLoading={setArticleLoading}

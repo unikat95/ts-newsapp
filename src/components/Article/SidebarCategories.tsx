@@ -11,7 +11,7 @@ export default function SidebarCategories() {
   const categories = ArticleCategoryList;
 
   return (
-    <div className="w-full flex flex-col gap-5 pb-5">
+    <div className="w-full flex flex-col gap-5">
       <SidebarHeading text="Categories" />
       <div className="w-full flex flex-col gap-1 justify-start items-start">
         {categories.map((cat) => {

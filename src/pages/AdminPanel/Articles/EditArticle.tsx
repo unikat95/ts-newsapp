@@ -20,7 +20,7 @@ import APHeading from "../../../components/AdminPanel/APHeading";
 
 export default function EditArticle() {
   const { id } = useParams();
-  const { articles } = useMainContext();
+  const { articles, setShowPopup, setPopupMessage } = useMainContext();
 
   const currentArticle = articles.find((art) => art.id === id);
   const [formField, setFormField] = useState({
@@ -66,6 +66,8 @@ export default function EditArticle() {
       }
     }
     setIsEditing(false);
+    setShowPopup(true);
+    setPopupMessage("Changes saved successfully");
     navigate("/admin-panel/article-list");
   };
 

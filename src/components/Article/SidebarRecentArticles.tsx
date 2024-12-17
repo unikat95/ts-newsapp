@@ -17,7 +17,7 @@ export default function SidebarRecentArticles({
   const recentArticles = sortedArticles.filter((art) => art.id !== articleId);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="w-full flex flex-col gap-5">
       <SidebarHeading text="Recent articles" />
       <div className="flex flex-wrap justify-start items-start">
         {recentArticles
@@ -33,7 +33,7 @@ export default function SidebarRecentArticles({
                   <img
                     src={art.img}
                     alt="article_img"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <p className="w-full line-clamp-1 group-hover:underline">

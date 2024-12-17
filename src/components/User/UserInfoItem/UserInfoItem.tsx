@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 
 type UserInfoItemProps = {
   Icon: IconType;
-  text: string | undefined;
+  text: string | undefined | number;
   itemName: string;
 };
 
@@ -20,7 +20,7 @@ export default function UserInfoItem({
         <div className="w-autop h-full bg-zinc-200 p-3">
           <Icon className="text-zinc-500" />
         </div>
-        <div className="w-full bg-zinc-100 text-primary-text p-2 capitalize">
+        <div className="w-full bg-zinc-100 text-primary-text p-2 first-letter:uppercase">
           {text}
         </div>
       </div>

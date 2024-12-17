@@ -36,7 +36,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           </p>
           <Link
             to={`/articles/article/${article.id}`}
-            className="text-2xl text-primary-text font-bold hover:underline"
+            className="text-2xl text-primary-text font-bold hover:underline line-clamp-2"
           >
             {article.title}
           </Link>

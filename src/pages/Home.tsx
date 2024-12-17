@@ -20,7 +20,11 @@ export default function Home() {
       <RecentArticles />
       <div className="w-full flex flex-col lg:flex-row justify-start items-start gap-5">
         <div className="w-full flex flex-col justify-start items-end gap-5">
-          <SidebarHeading text="Other articles" color="yellow" />
+          <SidebarHeading
+            text="Other articles"
+            color="yellow"
+            border="border-yellow"
+          />
           <div className="w-full flex flex-col gap-5">
             {sortedArticles
               .map((art) => <ArticleCard article={art} key={art.id} />)

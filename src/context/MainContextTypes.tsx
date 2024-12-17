@@ -14,6 +14,7 @@ export type UserProps = {
   role: string;
   joinedAt: Date;
   userProfileBg: string;
+  about: string;
 };
 
 export type CommentProps = {
@@ -75,18 +76,21 @@ export type MainContextProps = {
   pageLoading: boolean;
   setPageLoading: React.Dispatch<SetStateAction<boolean>>;
 
+  showPopup: boolean;
+  setShowPopup: React.Dispatch<SetStateAction<boolean>>;
+  popupMessage: string;
+  setPopupMessage: React.Dispatch<SetStateAction<string>>;
+
   handleSignIn: ({
     email,
     password,
     setLoading,
-    currentUser,
     setInitializing,
   }: AuthProps) => void;
   handleSignUp: ({
     email,
     password,
     setLoading,
-    currentUser,
     setInitializing,
   }: AuthProps) => void;
   handleSignOut: ({

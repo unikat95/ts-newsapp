@@ -46,9 +46,10 @@ export const handleSignUp = async ({
         avatar: "",
         birthDate: "",
         completed: false,
-        role: "User",
+        role: "user",
         joinedAt: new Date().toISOString(),
         userProfileBg: "",
+        about: "",
       };
 
       setDoc(doc(db, "users", userId), userData);

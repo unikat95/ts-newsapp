@@ -14,19 +14,22 @@ export default function APUserCard() {
         art.likes.some((like) => like.whoLiked == currentUser.id)
       );
 
-      const userComments = articles.filter((art) =>
-        art.comments.some((comment) => comment.author === currentUser.id)
-      );
+      const userComments = articles.reduce((total, art) => {
+        const userCommentCount = art.comments.filter(
+          (comment) => comment.author === currentUser.id
+        ).length;
+        return total + userCommentCount;
+      }, 0);
 
       setTotalArticles(userLikes.length);
-      setTotalComments(userComments.length);
+      setTotalComments(userComments);
     }
   }, [articles]);
 
   const userArticles = articles.filter((art) => art.author === currentUser?.id);
 
   return (
-    <div className=" flex-col justify-between items-start gap-5 row-span-2 col-span-2 lg:col-span-1">
+    <div className="flex flex-col justify-between items-start gap-5 row-span-2 col-span-2 lg:col-span-1">
       <div className="w-full h-full bg-white rounded-xl shadow-sm flex flex-col justify-start items-start relative p-5 gap-5">
         <div className="absolute -top-7 right-3 rounded-2xl border-[10px] border-slate-200">
           <UserAvatar size="ap" user={currentUser} />
@@ -35,7 +38,7 @@ export default function APUserCard() {
           <p className="text-xl text-zinc-600 font-semibold">
             {currentUser?.firstName + " " + currentUser?.lastName}
           </p>
-          <p className="text-base text-orange-600 font-semibold">
+          <p className="text-base text-orange-600 font-semibold first-letter:uppercase">
             {currentUser?.role}
           </p>
         </div>

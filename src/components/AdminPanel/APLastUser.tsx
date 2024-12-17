@@ -1,6 +1,7 @@
 import React from "react";
 import { UserProps } from "../../context/MainContextTypes";
 import { Link } from "react-router-dom";
+import UserAvatar from "../User/UserAvatar/UserAvatar";
 
 type APLastUser = {
   user: UserProps;
@@ -14,19 +15,7 @@ export default function APLastUser({ user }: APLastUser) {
         className="w-full h-auto bg-white flex flex-col justify-end items-center p-5 gap-5 rounded-lg relative overflow-hidden cursor-pointer group"
       >
         <div className="z-50 rounded-full border-[6px] border-slate-200 overflow-hidden">
-          {user.avatar ? (
-            <img
-              src={user.avatar}
-              alt=""
-              className="w-20 h-20 z-10 object-cover group-hover:scale-110 transition-all"
-            />
-          ) : (
-            <div className="bg-slate-500 w-20 h-20 rounded-full border-[6px] border-slate-200 flex justify-center items-center z-10">
-              <p className="text-3xl text-white font-semibold uppercase">
-                {user.email.slice(0, 1)}
-              </p>
-            </div>
-          )}
+          <UserAvatar size="md" user={user} />
         </div>
         <div className="w-full flex flex-col justify-center items-center z-10">
           <p className="text-slate-700 text-lg font-bold text-center">

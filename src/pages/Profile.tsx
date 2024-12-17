@@ -6,12 +6,15 @@ import APLoading from "../components/AdminPanel/APLoading";
 import UserProfile from "../components/User/UserProfile/UserProfile";
 import EditBackgroundModal from "../components/User/EditBackgroundModal/EditBackgroundModal";
 import EditUserModal from "../components/User/EditUserModal/EditUserModal";
+import PopupMessage from "../components/PopupMessage/PopupMessage";
 
 export default function Profile() {
   const { currentUser } = useMainContext();
   const [isUserBgEditing, setIsUserBgEditing] = useState(false);
   const [isUserEditing, setIsUserEditing] = useState(false);
   const [bgImage, setBgImage] = useState(currentUser?.userProfileBg);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupText, setPopupText] = useState("");
 
   const loader = useLoading();
   if (loader) return <APLoading />;
@@ -41,11 +44,20 @@ export default function Profile() {
         bgImage={bgImage}
         handleInputChange={handleInputChange}
         handleToggleUserBgEditor={handleToggleUserBgEditor}
+        setIsPopupOpen={setIsPopupOpen}
+        setPopupText={setPopupText}
       />
       <EditUserModal
         isUserEditing={!currentUser?.completed || isUserEditing}
         setIsUserEditing={setIsUserEditing}
         handleToggleUserEditor={handleToggleUserEditor}
+        setIsPopupOpen={setIsPopupOpen}
+        setPopupText={setPopupText}
+      />
+      <PopupMessage
+        isOpen={isPopupOpen}
+        setIsOpen={setIsPopupOpen}
+        text={popupText}
       />
     </div>
   );

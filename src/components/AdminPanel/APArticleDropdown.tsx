@@ -9,6 +9,7 @@ import { ArticleProps } from "../../context/MainContextTypes";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import APArticleModal from "./APArticleModal";
+import useMainContext from "../../hooks/useMainContext";
 
 export type APArticleDropdownProps = {
   to: string;
@@ -27,6 +28,7 @@ export default function APArticleDropdown({
   link,
 }: APArticleDropdownProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setShowPopup, setPopupMessage } = useMainContext();
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -40,8 +42,11 @@ export default function APArticleDropdown({
   const handleDeleteArticle = async () => {
     try {
       await deleteDoc(doc(db, "articles", article.id));
+      await deleteDoc(doc(db, "comments", article.id));
       if (onDelete) {
         onDelete(article.id);
+        setShowPopup(true);
+        setPopupMessage("Article successfully deleted");
       }
     } catch (error) {
       console.log(error);

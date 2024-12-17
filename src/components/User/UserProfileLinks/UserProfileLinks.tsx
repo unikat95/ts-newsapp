@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
@@ -10,7 +10,7 @@ import { RiMessage3Fill } from "react-icons/ri";
 import LoadingBar from "../../LoadingBar/LoadingBar";
 
 type UserProfileLinksProps = {
-  handleToggleUserEditor: MouseEventHandler<HTMLButtonElement>;
+  handleToggleUserEditor: (() => void) | undefined;
 };
 
 export default function UserProfileLinks({

@@ -35,7 +35,8 @@ export default function EditUser({
   setArrayToDisplay,
   setIsOpen,
 }: EditUserProps) {
-  const { setIsEditModalOpen, setEditLoading } = useMainContext();
+  const { setIsEditModalOpen, setEditLoading, setShowPopup, setPopupMessage } =
+    useMainContext();
   const [isEditing, setIsEditing] = useState(false);
 
   const [formFields, setFormFields] = useState({
@@ -78,6 +79,8 @@ export default function EditUser({
             setIsEditing(false);
             setIsEditModalOpen(false);
             setEditLoading(true);
+            setShowPopup(true);
+            setPopupMessage("Changes saved successfully");
           }, 700)
         );
 

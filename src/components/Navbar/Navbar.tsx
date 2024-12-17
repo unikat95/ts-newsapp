@@ -11,7 +11,6 @@ type NavbarProps = {
 
 export default function Navbar({ navbarHeight, setNavbarHeight }: NavbarProps) {
   const [openMenu, setOpenMenu] = useState(false);
-  const [scroll, setScroll] = useState<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,9 +27,6 @@ export default function Navbar({ navbarHeight, setNavbarHeight }: NavbarProps) {
     };
 
     window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", () =>
-      window.scrollY > 30 ? setScroll(true) : setScroll(false)
-    );
 
     return () => window.removeEventListener("resize", handleResize);
   }, [navbarHeight]);
@@ -42,9 +38,7 @@ export default function Navbar({ navbarHeight, setNavbarHeight }: NavbarProps) {
   return (
     <nav
       ref={navRef}
-      className={`
-      w-full bg-white flex flex-col justify-center items-center fixed top-0 left-0 px-5 border-b z-50
-      ${scroll ? "py-3" : "py-6"} transition-[padding] duration-300`}
+      className="w-full bg-white flex flex-col justify-center items-center fixed top-0 left-0 px-5 py-6 border-b z-50"
     >
       <div className="w-full max-w-[1400px] flex justify-between items-center">
         <NavbarLogo />

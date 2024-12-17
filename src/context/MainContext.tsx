@@ -43,8 +43,9 @@ export default function MainProvider({ children }: MainProviderProps) {
   } = useArticles();
 
   const [pageLoading, setPageLoading] = useState(true);
-
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   if (loading || initializing) return <PageLoading />;
 
@@ -90,6 +91,11 @@ export default function MainProvider({ children }: MainProviderProps) {
 
         pageLoading,
         setPageLoading,
+
+        showPopup,
+        setShowPopup,
+        popupMessage,
+        setPopupMessage,
       }}
     >
       {children}

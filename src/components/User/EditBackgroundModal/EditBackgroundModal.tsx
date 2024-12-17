@@ -14,6 +14,8 @@ type UserEditBackgroundModalProps = {
   bgImage: string | undefined;
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleToggleUserBgEditor: () => void;
+  setIsPopupOpen: React.Dispatch<SetStateAction<boolean>>;
+  setPopupText: React.Dispatch<SetStateAction<string>>;
 };
 
 export default function EditBackgroundModal({
@@ -22,6 +24,8 @@ export default function EditBackgroundModal({
   bgImage,
   handleInputChange,
   handleToggleUserBgEditor,
+  setIsPopupOpen,
+  setPopupText,
 }: UserEditBackgroundModalProps) {
   const { currentUser } = useMainContext();
   const [saveImage, setSaveImage] = useState(false);
@@ -40,6 +44,8 @@ export default function EditBackgroundModal({
             });
             setIsUserBgEditing(false);
             setSaveImage(false);
+            setIsPopupOpen(true);
+            setPopupText("User cover image successfully saved");
           }, 1000)
         );
         console.log("bg Updated!");

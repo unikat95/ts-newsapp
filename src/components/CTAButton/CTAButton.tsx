@@ -22,7 +22,7 @@ export default function CTAButton({
 }: CTAButtonProps) {
   return (
     <button
-      className={`px-4 py-2 rounded-md flex justify-center items-center gap-3 disabled:cursor-not-allowed disabled:bg-opacity-60
+      className={`px-4 py-2 rounded-md flex justify-center items-center gap-2 disabled:cursor-not-allowed disabled:bg-opacity-60
       ${getButtonStyles(variant)}`}
       disabled={disabled}
       onClick={handleSubmit || onClick}

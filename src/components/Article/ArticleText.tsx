@@ -7,7 +7,7 @@ type ArticleTextProps = {
 
 export default function ArticleText({ text }: ArticleTextProps) {
   return (
-    <div className="text-secondary-text leading-7">
+    <div className="text-secondary-text leading-7 border-b pb-10">
       {HTMLReactParser(text || "")}
     </div>
   );
