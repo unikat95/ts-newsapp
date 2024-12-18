@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useMemo, useState } from "react";
 
 import { db } from "../../../config/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc } from "firebase/firestore";
 
 import { PuffLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,7 +20,8 @@ import APHeading from "../../../components/AdminPanel/APHeading";
 
 export default function EditArticle() {
   const { id } = useParams();
-  const { articles, setShowPopup, setPopupMessage } = useMainContext();
+  const { articles, setShowPopup, setPopupMessage, handleEditArticle } =
+    useMainContext();
 
   const currentArticle = articles.find((art) => art.id === id);
   const [formField, setFormField] = useState({
@@ -29,12 +30,11 @@ export default function EditArticle() {
     text: currentArticle?.text || "",
   });
   const [isEditing, setIsEditing] = useState(false);
-  const navigate = useNavigate();
   const [openPreview, setOpenPreview] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     setFormField((prev) => ({
       ...prev,
       [name]: value,
@@ -49,26 +49,19 @@ export default function EditArticle() {
     ? doc(db, "articles", currentArticle.id)
     : null;
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setIsEditing(true);
-
-    if (editedArticleRef) {
-      try {
-        await updateDoc(editedArticleRef, {
-          title: formField.title,
-          img: formField.img,
-          text: formField.text,
-        });
-        await new Promise((res) => setTimeout(res, 1000));
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    setIsEditing(false);
-    setShowPopup(true);
-    setPopupMessage("Changes saved successfully");
-    navigate("/admin-panel/article-list");
+    handleEditArticle({
+      setIsEditing,
+      editedArticleRef,
+      title: formField.title,
+      img: formField.img,
+      text: formField.text,
+      setShowPopup,
+      setPopupMessage,
+      navigate,
+      msg: "Changes saved successfully",
+    });
   };
 
   const editorConfig = useMemo(

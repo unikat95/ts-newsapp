@@ -13,7 +13,7 @@ import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import ArticleCategory from "../components/Article/ArticleCategory";
 import LoadingBar from "../components/LoadingBar/LoadingBar";
 import ArticleStats from "../components/Article/ArticleStats";
-import ArticleComments from "../components/Article/ArticleComments";
+import Comments from "../components/Comment/Comments";
 
 export default function Article() {
   const { id } = useParams();
@@ -57,7 +57,7 @@ export default function Article() {
             </div>
             <ArticleImg img={article.img} />
             <ArticleText text={article.text} />
-            <ArticleComments author={author} article={article} />
+            <Comments author={author} article={article} />
           </div>
           <ArticleSidebar
             articleId={article.id}

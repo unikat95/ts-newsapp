@@ -1,7 +1,13 @@
 import { User } from "firebase/auth";
 import React, { SetStateAction } from "react";
 import { AuthProps, SignOutProps } from "./AuthFunctions";
-import { CreateArticleProps, HandleLikePostProps } from "./ArticleFunctions";
+import {
+  AddCommentProps,
+  AddReplyProps,
+  CreateArticleProps,
+  EditArticleProps,
+  LikePostProps,
+} from "./ArticleFunctions";
 
 export type UserProps = {
   id: string;
@@ -17,13 +23,19 @@ export type UserProps = {
   about: string;
 };
 
+export type ReplyProps = {
+  id: string;
+  msg: string;
+  author: string;
+  createdAt: Date;
+};
+
 export type CommentProps = {
   id: string;
   msg: string;
   author: string;
   createdAt: Date;
-  likes: [];
-  replies: [];
+  replies: ReplyProps[];
 };
 
 export type LikeProps = {
@@ -47,6 +59,8 @@ export type MainContextProps = {
   setUser: React.Dispatch<SetStateAction<User | null>>;
   currentUser: UserProps | null;
   setCurrentUser: React.Dispatch<SetStateAction<UserProps | null>>;
+  isActive: boolean;
+  setIsActive: React.Dispatch<SetStateAction<boolean>>;
   userList: UserProps[] | null;
   setUserList: React.Dispatch<SetStateAction<UserProps[] | null>>;
   loading: boolean;
@@ -107,6 +121,7 @@ export type MainContextProps = {
     text,
     currentUser,
   }: CreateArticleProps) => Promise<void>;
+
   handleLikePost: ({
     currentUser,
     setLikeLoading,
@@ -114,7 +129,34 @@ export type MainContextProps = {
     setLiked,
     article,
     likeRef,
-  }: HandleLikePostProps) => Promise<void>;
+  }: LikePostProps) => Promise<void>;
+
+  handleEditArticle: ({
+    setIsEditing,
+    editedArticleRef,
+    title,
+    img,
+    text,
+    setShowPopup,
+    setPopupMessage,
+    navigate,
+    msg,
+  }: EditArticleProps) => Promise<void>;
+
+  handleAddComment: ({
+    currentUser,
+    commentMsg,
+    article,
+    setCommentMsg,
+  }: AddCommentProps) => Promise<void>;
+
+  handleAddReply: ({
+    currentUser,
+    replyMsg,
+    article,
+    comment,
+    setReplyMsg,
+  }: AddReplyProps) => Promise<void>;
 };
 export type MainProviderProps = {
   children: React.ReactNode;

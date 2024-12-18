@@ -26,7 +26,7 @@ export default function SidebarCategories() {
               onClick={() => setCategoryToDisplay(cat.value)}
             >
               <div className="text sm flex justify-center items-center gap-2">
-                <BiSolidCategoryAlt size={16} className="text-primary-text" />
+                <BiSolidCategoryAlt size={18} className="text-primary-text" />
                 <p className="group-hover:underline">{cat.name}</p>
               </div>
               <p className="text-xs">{categoriesLength.length} articles</p>

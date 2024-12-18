@@ -7,6 +7,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 export default function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState<UserProps | null>(null);
+  const [isActive, setIsActive] = useState(false);
   const [userList, setUserList] = useState<UserProps[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [initializing, setInitializing] = useState(true);
@@ -59,6 +60,8 @@ export default function useAuth() {
     setUser,
     currentUser,
     setCurrentUser,
+    isActive,
+    setIsActive,
     userList,
     setUserList,
     loading,

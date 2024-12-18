@@ -32,7 +32,9 @@ export default function ArticleStats({ article }: ArticleStatsProps) {
           <p>likes,</p>
         </div>
         <div className="text-sm text-secondary-text flex gap-1">
-          <span className="text-orange-500 font-semibold">0</span>
+          <span className="text-orange-500 font-semibold">
+            {article.comments.length}
+          </span>
           <p>comments</p>
         </div>
       </div>

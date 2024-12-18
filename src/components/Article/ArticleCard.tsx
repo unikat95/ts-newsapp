@@ -71,7 +71,8 @@ export default function ArticleCard({ article }: ArticleCardProps) {
                 <AiFillLike className="mb-1" />
               </div>
               <div className="flex justify-center items-center gap-1 text-secondary-text">
-                0<FaRegCommentDots />
+                {article.comments.length}
+                <FaRegCommentDots />
               </div>
             </div>
           </div>

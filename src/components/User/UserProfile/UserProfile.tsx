@@ -23,7 +23,7 @@ export default function UserProfile({
   const location = useLocation();
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-end gap-5">
+    <div className="w-full bg-white h-full flex flex-col justify-center items-end gap-5">
       <h3 className="w-full">User information:</h3>
       <div className="w-full h-full flex flex-col justify-center items-start">
         <div
@@ -48,7 +48,11 @@ export default function UserProfile({
           <div className="w-full absolute -top-40 left-0 flex justify-center items-center md:justify-start md:left-5 gap-5">
             <UserAvatar size="xl" user={user} />
           </div>
-          <div className="w-full flex justify-center items-center md:justify-end md:items-end z-10 mt-14 md:mt-0">
+          <div
+            className={`w-full flex justify-center items-center md:justify-end md:items-end z-10 mt-14 md:mt-0 ${
+              location.pathname.includes("user") && "md:mt-10"
+            }`}
+          >
             <UserProfileLinks handleToggleUserEditor={handleToggleUserEditor} />
           </div>
           <div className="w-full">

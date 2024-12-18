@@ -25,7 +25,7 @@ export default function SidebarRecomendedArticles({
   }, [articleCat, articleId, sortedArticles.length]);
 
   return (
-    <div className="w-full flex flex-col gap-5 pb-5">
+    <div className="w-full flex flex-col gap-5">
       <SidebarHeading text="Recommended articles" />
       <div className="flex flex-wrap justify-start items-start">
         {shuffledArticles.length === 0

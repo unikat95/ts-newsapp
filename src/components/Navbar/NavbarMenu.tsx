@@ -22,7 +22,12 @@ export default function NavbarMenu({ openMenu, setOpenMenu }: NavbarMenuProps) {
   } transition-transform duration-500`}
     >
       <NavbarItem text="Home" to="/" setOpenMenu={setOpenMenu} />
-      <NavbarItem text="Articles" to="/articles" setOpenMenu={setOpenMenu} />
+      <NavbarItem
+        text="Articles"
+        to="/articles"
+        setOpenMenu={setOpenMenu}
+        clearCategory={true}
+      />
       <NavbarItem text="Users" to="/users" setOpenMenu={setOpenMenu} />
 
       {user ? (

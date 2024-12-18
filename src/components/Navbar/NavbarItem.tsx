@@ -1,11 +1,13 @@
 import React, { SetStateAction } from "react";
 import { NavLink } from "react-router-dom";
+import useMainContext from "../../hooks/useMainContext";
 
 type NavbarItemProps = {
   text: string;
   to: string;
   setOpenMenu: React.Dispatch<SetStateAction<boolean>>;
   hidden?: boolean;
+  clearCategory?: boolean;
 };
 
 export default function NavbarItem({
@@ -13,9 +15,15 @@ export default function NavbarItem({
   to,
   setOpenMenu,
   hidden,
+  clearCategory,
 }: NavbarItemProps) {
+  const { setCategoryToDisplay } = useMainContext();
   const handleCloseMenu = () => {
     setOpenMenu(false);
+
+    if (clearCategory) {
+      setCategoryToDisplay("");
+    }
   };
 
   return (
