@@ -1,7 +1,7 @@
 import React from "react";
 
 import useMainContext from "../../../hooks/useMainContext";
-import { getRoleStyles } from "../../../Utilities/ThemeUtils";
+import { getRoleStyles } from "../../../utils/ThemeUtils";
 
 export default function UserRole() {
   const { currentUser } = useMainContext();

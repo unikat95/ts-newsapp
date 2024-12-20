@@ -49,7 +49,10 @@ export default function UserProfileLinks({
       {location.pathname.includes("user") ? null : (
         <div className="w-auto">
           <div className="flex gap-2">
-            <Link to="/profile/messages" className={linkStyles}>
+            <Link
+              to="/profile/messages/incoming-messages"
+              className={linkStyles}
+            >
               <RiMessage3Fill />
             </Link>
             {currentUser?.role === "administrator" && (

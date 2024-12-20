@@ -19,19 +19,19 @@ export default function NavbarDropdownItem({
   const { unreadMessagesCount } = useMainContext();
   return (
     <li
-      className="flex justify-center items-center bg-white hover:bg-neutral-100 w-full border-b first:border-t text-nowrap relative"
+      className="w-full rounded-md overflow-hidden"
       onClick={() => setOpenDropdown(false)}
     >
       <Link
         to={to}
-        className="w-full py-3 pl-4 pr-6 gap-3 flex justify-start items-center text-sm"
+        className="w-full hover:bg-slate-100 flex justify-start items-center gap-2 px-2 py-2 text-nowrap relative"
       >
         <Icon className="text-neutral-500" size={18} />
         {name}
+        {name === "Messages" && unreadMessagesCount > 0 && (
+          <span className="absolute right-2 bg-red-500 rounded-full size-2 flex justify-center items-center z-[999] animate-pulse"></span>
+        )}
       </Link>
-      {name === "Messages" && unreadMessagesCount > 0 && (
-        <span className="absolute right-1 bg-red-500 rounded-full size-[10px] flex justify-center items-center z-[999] animate-pulse"></span>
-      )}
     </li>
   );
 }

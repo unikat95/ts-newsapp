@@ -12,7 +12,7 @@ export default function CommentReply({ rep, repAuthor }: CommentReplyProps) {
   return (
     <div
       key={rep.id}
-      className="w-[90%] flex flex-col justify-center items-start border p-5 gap-3 relative"
+      className="w-[90%] bg-white flex flex-col justify-center items-start p-5 gap-3 relative rounded-xl shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]"
     >
       <Link
         to={`/users/user/${rep.author}`}

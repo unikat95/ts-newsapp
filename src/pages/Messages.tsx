@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import useMainContext from "../hooks/useMainContext";
 import MessagesItem from "../components/Messages/MessagesItem";
 import { createMessagesItemsList } from "../components/Messages/MessagesItemsList";
+import useLoading from "../hooks/useLoading";
+import APLoading from "../components/AdminPanel/APLoading";
 
 export default function Messages() {
   const { incomingUnreadCount, sentUnreadCount } = useMainContext();
@@ -11,6 +13,9 @@ export default function Messages() {
     incomingUnreadCount,
     sentUnreadCount,
   });
+
+  const loading = useLoading();
+  if (loading) return <APLoading />;
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-start gap-5">

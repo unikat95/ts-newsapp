@@ -24,9 +24,9 @@ export default function UserProfile({
   const location = useLocation();
 
   return (
-    <div className="w-full bg-white h-full flex flex-col justify-center items-end gap-5">
+    <div className="w-full h-full flex flex-col justify-center items-end gap-5">
       <APHeading text="User information" />
-      <div className="w-full h-full flex flex-col justify-center items-start">
+      <div className="w-full h-full bg-white flex flex-col justify-center items-start main-shadow rounded-xl overflow-hidden">
         <div
           className={`w-full h-[25rem] flex flex-col justify-start items-center gap-5 p-20 bg-cover bg-center relative after:absolute after:w-full after:h-full after:top-0 after:left-0 after:bg-black after:bg-opacity-10 after:transition-all after:duration-200 group backdrop-blur-md
           ${
@@ -45,7 +45,7 @@ export default function UserProfile({
             </button>
           )}
         </div>
-        <div className="w-full h-full flex flex-col justify-start items-start p-5 border-x border-b relative">
+        <div className="w-full h-full flex flex-col justify-start items-start p-5 relative">
           <div className="w-full absolute -top-40 left-0 flex justify-center items-center md:justify-start md:left-5 gap-5">
             <UserAvatar size="xl" user={user} />
           </div>

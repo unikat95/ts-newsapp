@@ -44,9 +44,9 @@ export default function NavbarDropdown() {
   return (
     <div
       ref={dropdownRef}
-      className="bg-white absolute right-0 shadow-md border z-[999] rounded-lg overflow-hidden py-2"
+      className="bg-white absolute right-0 top-12 shadow-md border z-[999] rounded-lg"
     >
-      <ul>
+      <ul className="w-full text-sm flex flex-col justify-start items-start p-2 gap-1">
         <NavbarDropdownItem
           Icon={FaUserCircle}
           name="Profile"
@@ -65,7 +65,7 @@ export default function NavbarDropdown() {
           to="/admin-panel"
           setOpenDropdown={setOpenDropdown}
         />
-        <li>
+        <li className="w-full rounded-md overflow-hidden">
           <button
             onClick={() =>
               handleSignOut({
@@ -76,7 +76,7 @@ export default function NavbarDropdown() {
                 setOpenDropdown,
               })
             }
-            className="hover:bg-black hover:text-white text-sm w-full py-3 px-4 gap-3 flex justify-start items-center border-b"
+            className="w-full hover:bg-black hover:text-white flex justify-start items-center gap-2 px-2 py-2 text-nowrap"
           >
             <IoMdLogOut className="hover:text-white" size={18} />
             Logout

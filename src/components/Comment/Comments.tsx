@@ -22,6 +22,7 @@ export default function Comments({ author, article }: ArticleCommentsProps) {
             const comAuthor = userList?.find((user) => user.id === com.author);
             return (
               <Comment
+                key={com.id}
                 comment={com}
                 comAuthor={comAuthor}
                 author={author}

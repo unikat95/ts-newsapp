@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import useMainContext from "../../hooks/useMainContext";
 import { Link } from "react-router-dom";
 import SidebarHeading from "./SidebarHeading";
+import { TbArticleFilled } from "react-icons/tb";
 
 type RecentArticlesProps = {
   articleId?: string;
@@ -18,14 +19,14 @@ export default function SidebarRecentArticles({
 
   return (
     <div className="w-full flex flex-col gap-5">
-      <SidebarHeading text="Recent articles" />
+      <SidebarHeading text="Recent articles" Icon={TbArticleFilled} />
       <div className="w-full  flex flex-wrap justify-start items-start gap-1">
         {recentArticles
           .map((art) => (
             <Link
               to={`/articles/article/${art.id}`}
               key={art.id}
-              className="w-full bg-white flex justify-center items-center gap-2 p-3 group shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]"
+              className="w-full bg-white flex justify-center items-center gap-2 p-3 group rounded-xl shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]"
               onClick={() => setArticleLoading?.(true)}
             >
               <div className="w-full flex justify-center items-center gap-2">

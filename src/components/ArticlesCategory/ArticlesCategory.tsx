@@ -17,7 +17,7 @@ export default function ArticlesCategory({
     <select
       name="category"
       onChange={handleCategoryChange}
-      className="w-auto bg-zinc-900 text-white border border-r-[12px] border-zinc-900 px-3 py-2 outline-none"
+      className="w-auto bg-zinc-900 text-white border border-r-[12px] border-zinc-900 px-3 py-2 outline-none rounde-md"
       value={currentCategory}
     >
       <option value="">All categories</option>

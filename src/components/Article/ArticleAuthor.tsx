@@ -11,7 +11,6 @@ type ArticleAuthorProps = {
 export default function ArticleAuthor({ author }: ArticleAuthorProps) {
   return (
     <div className="w-full flex justify-start items-center gap-2">
-      <p className="text-sm font-medium">by</p>
       <Link
         to={`/users/user/${author?.id}`}
         className="w-auto flex gap-2 justify-start items-center group text-secondary-text"

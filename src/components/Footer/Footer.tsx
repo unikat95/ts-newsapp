@@ -34,9 +34,9 @@ export default function Footer({ footerHeight, setFooterHeight }: FooterProps) {
       <div className="w-full max-w-[1400px] h-full flex justify-start items-start py-14 px-5 xl:px-0 gap-10">
         <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-20 lg:gap-10">
           <div className="w-full grid grid-cols-[auto,_1fr] gap-10 md:gap-20">
-            links
+            <p></p>
           </div>
-          social
+          <p></p>
         </div>
       </div>
       <div className="w-full h-full flex justify-center items-center bg-zinc-950 py-3">

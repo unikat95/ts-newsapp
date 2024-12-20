@@ -1,31 +1,31 @@
 import React from "react";
+
 import { getHeadingColor } from "../../utils/ThemeUtils";
+import { IconType } from "react-icons";
 
 type SidebarHeadingProps = {
   text: string;
   fontSize?: string;
   color?: string;
   border?: string;
+  Icon?: IconType;
 };
 
 export default function SidebarHeading({
   text,
   fontSize,
   color,
-  border,
+  Icon,
 }: SidebarHeadingProps) {
   return (
-    <div
-      className={`
-    w-full bg- flex justify-start items-start border-b-[4px] border-black
-    ${border && getHeadingColor(border)}`}
-    >
+    <div className="w-full flex justify-start items-start">
       <h4
         className={`
-      bg-black text-white px-5 pt-2 pb-[3px]
+      flex justify-start items-center gap-2 bg-black text-white px-3 py-2 rounded-md main-shadow
       ${fontSize}
       ${color && getHeadingColor(color)}`}
       >
+        {Icon && <Icon />}
         {text}
       </h4>
     </div>

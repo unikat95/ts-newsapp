@@ -15,7 +15,7 @@ export default function ArticleCategory({ articleCat }: ArticleCategoryProps) {
     <Link
       to="/articles"
       className={`
-      w-auto flex justify-start items-start px-3 py-2 text-sm
+      w-auto flex justify-start items-start px-5 py-2 text-sm rounded-md
       ${getCategoriesColor(articleCat)}`}
       onClick={() => setCategoryToDisplay(articleCat)}
     >

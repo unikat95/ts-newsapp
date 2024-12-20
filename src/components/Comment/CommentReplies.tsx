@@ -24,7 +24,9 @@ export default function CommentReplies({
         <div className="w-full flex flex-col justify-end items-end gap-3">
           {comment.replies.map((rep) => {
             const repAuthor = userList?.find((user) => user.id === rep.author);
-            return <CommentReply rep={rep} repAuthor={repAuthor} />;
+            return (
+              <CommentReply key={rep.id} rep={rep} repAuthor={repAuthor} />
+            );
           })}
         </div>
       )}

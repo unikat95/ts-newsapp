@@ -1,4 +1,5 @@
 import React from "react";
+
 import useLoading from "../hooks/useLoading";
 import APLoading from "../components/AdminPanel/APLoading";
 import SidebarRecentArticles from "../components/Article/SidebarRecentArticles";
@@ -8,6 +9,9 @@ import SidebarHeading from "../components/Article/SidebarHeading";
 import useMainContext from "../hooks/useMainContext";
 import ArticleCard from "../components/ArticleCard/ArticleCard";
 import { Link } from "react-router-dom";
+
+import { MdOutlineArticle } from "react-icons/md";
+import { LuExternalLink } from "react-icons/lu";
 
 export default function Home() {
   const { sortedArticles } = useMainContext();
@@ -22,16 +26,19 @@ export default function Home() {
         <div className="w-full flex flex-col justify-start items-end gap-5">
           <SidebarHeading
             text="Other articles"
-            color="yellow"
-            border="border-yellow"
+            color="orange"
+            Icon={MdOutlineArticle}
           />
           <div className="w-full flex flex-col gap-5">
             {sortedArticles
               .map((art) => <ArticleCard article={art} key={art.id} />)
               .slice(4, 9)}
           </div>
-          <Link to="/articles" className="underline">
-            See all articles
+          <Link
+            to="/articles"
+            className="bg-white flex justify-center items-center px-4 py-3 rounded-md hover:underline main-shadow gap-1"
+          >
+            See all articles <LuExternalLink />
           </Link>
         </div>
         <div className="w-full flex flex-col lg:w-3/5 xl:w-2/5 gap-5">

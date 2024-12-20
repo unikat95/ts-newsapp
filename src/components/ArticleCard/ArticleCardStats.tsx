@@ -34,11 +34,11 @@ export default function ArticleCardStats({ article }: ArticleCardProps) {
       <div className="flex justify-center items-center gap-5">
         <div className="flex justify-center items-center gap-3">
           <div className="flex justify-center items-center gap-1 text-secondary-text">
-            <AiFillLike className="mb-1" />
+            <AiFillLike size={20} className="mb-1" />
             {article.likes.length}
           </div>
           <div className="flex justify-center items-center gap-1 text-secondary-text">
-            <FaRegCommentDots />
+            <FaRegCommentDots size={20} />
             {article.comments.length}
           </div>
         </div>

@@ -40,7 +40,7 @@ export default function Comment({
     <div className="w-full flex flex-col justify-start items-end gap-3">
       <div
         key={comment.id}
-        className="w-full flex flex-col justify-center items-start border p-5 gap-3 relative"
+        className="w-full bg-white flex flex-col justify-center items-start p-5 rounded-xl shadow-[0_1px_30px_0_rgba(0,0,0,0.05)] gap-3 relative"
       >
         <CommentAuthor comment={comment} comAuthor={comAuthor} />
         <p className="text-secondary-text">{comment.msg}</p>

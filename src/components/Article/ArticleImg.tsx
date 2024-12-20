@@ -9,7 +9,7 @@ export default function ArticleImg({ img }: ArticleImgProps) {
     <img
       src={img}
       alt="article_image"
-      className="w-full h-80 object-cover"
+      className="w-full h-80 object-cover rounded-xl"
     ></img>
   );
 }

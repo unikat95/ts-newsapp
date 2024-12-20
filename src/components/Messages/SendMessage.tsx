@@ -26,12 +26,21 @@ export default function SendMessage() {
     }
   }, [formFields.user]);
 
-  const filteredUserList = userList?.filter(
-    (user) =>
-      (user.firstName.toLowerCase().includes(formFields.user) ||
-        user.lastName.toLowerCase().includes(formFields.user)) &&
-      user.id !== currentUser?.id
-  );
+  const filteredUserList = userList?.filter((user) => {
+    const searchTerms = formFields.user.toLowerCase().trim().split(" ");
+
+    const fieldsToSearch = [
+      user.firstName.toLowerCase(),
+      user.lastName.toLowerCase(),
+      `${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}`,
+    ];
+
+    return (
+      searchTerms.every((term) =>
+        fieldsToSearch.some((field) => field.includes(term))
+      ) && user.id !== currentUser?.id
+    );
+  });
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -76,7 +85,7 @@ export default function SendMessage() {
       <APHeading text="Send message" />
       <form className="w-full flex flex-col justify-start items-end gap-2 rounded-lg">
         {selectedUser ? (
-          <div className="w-full bg-slate-100 px-3 py-2 border flex justify-between items-center">
+          <div className="w-full bg-slate-100 px-3 py-2 border flex justify-between items-center rounded-md">
             <div className="flex justify-start items-center gap-2">
               <UserAvatar size="2xs" user={selectedUser} />
               {selectedUser.firstName + " " + selectedUser.lastName}
@@ -90,28 +99,30 @@ export default function SendMessage() {
             </button>
           </div>
         ) : (
-          <div className="w-full relative">
+          <div className="w-full flex flex-col justify-start items-start relative">
             <input
               type="text"
               name="user"
               placeholder="start typing to search for a user"
-              className="w-full px-3 py-2 border outline-1 outline-blue-500"
+              className="w-full px-3 py-2 border outline-1 outline-blue-500 rounded-md"
               onChange={handleInputChange}
             />
-            {openUserList && (
-              <div className="w-full bg-white border flex flex-col justify-center items-start absolute p-3">
+            {openUserList && filteredUserList && (
+              <div className="w-full bg-white border rounded-xl shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]  flex flex-col justify-start items-start absolute p-5 top-12">
                 <div className="w-full flex flex-col items-start gap-1">
-                  {filteredUserList?.map((user) => (
-                    <button
-                      type="button"
-                      key={user.id}
-                      onClick={() => handleSelectUser(user.id)}
-                      className="w-full border rounded-md flex justify-start items-center px-3 py-2 gap-2"
-                    >
-                      <UserAvatar size="2xs" user={user} />{" "}
-                      {user.firstName + " " + user.lastName}
-                    </button>
-                  ))}
+                  {filteredUserList?.length > 0
+                    ? filteredUserList?.map((user) => (
+                        <button
+                          type="button"
+                          key={user.id}
+                          onClick={() => handleSelectUser(user.id)}
+                          className="w-full bg-white hover:bg-slate-100 border rounded-md flex justify-start items-center px-3 py-2 gap-2"
+                        >
+                          <UserAvatar size="2xs" user={user} />{" "}
+                          {user.firstName + " " + user.lastName}
+                        </button>
+                      ))
+                    : "User not found."}
                 </div>
               </div>
             )}
@@ -121,7 +132,7 @@ export default function SendMessage() {
           type="text"
           name="title"
           placeholder="message title..."
-          className="w-full px-3 py-2 border outline-1 outline-blue-500"
+          className="w-full px-3 py-2 border outline-1 outline-blue-500 rounded-md"
           value={formFields.title}
           onChange={handleInputChange}
         />
@@ -130,7 +141,7 @@ export default function SendMessage() {
           placeholder="message..."
           cols={30}
           rows={10}
-          className="w-full px-3 py-2 border outline-1 outline-blue-500"
+          className="w-full px-3 py-2 border outline-1 outline-blue-500 rounded-md"
           value={formFields.message}
           onChange={handleInputChange}
         />

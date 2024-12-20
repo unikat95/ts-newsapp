@@ -13,7 +13,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <div
       key={article.id}
-      className="w-full bg-white grid grid-cols-1 md:grid-cols-[auto_1fr] p-5 gap-5 group shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]"
+      className="w-full bg-white grid grid-cols-1 md:grid-cols-[auto_1fr] p-5 gap-5 group rounded-xl main-shadow"
     >
       <ArticleCardImage article={article} />
       <div className="w-full flex flex-col justify-between items-start gap-3">

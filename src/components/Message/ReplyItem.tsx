@@ -13,7 +13,7 @@ export default function ReplyItem({ rep, repAuthor, author }: ReplyProps) {
   return (
     <div
       key={rep?.id}
-      className={`flex flex-col rounded-lg p-5 gap-5 shadow-[0_1px_30px_0_rgba(0,0,0,0.05)] ${
+      className={`flex flex-col rounded-lg p-5 gap-5 main-shadow ${
         repAuthor === author
           ? "w-full border-l-4 border-amber-400"
           : "w-[90%] border-l-4 border-blue-500"

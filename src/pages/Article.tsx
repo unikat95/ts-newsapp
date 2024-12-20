@@ -51,7 +51,7 @@ export default function Article() {
           <div className="w-full flex flex-col justify-start items-start gap-5 relative">
             <ArticleCategory articleCat={article.category} />
             <ArticleTitle title={article.title} createdAt={article.createdAt} />
-            <div className="w-full flex flex-col md:flex-row justify-between gap-3 md:gap-0 border-t pt-5">
+            <div className="w-full flex flex-col md:flex-row justify-between gap-3 md:gap-0 border-y py-3">
               <ArticleAuthor author={author} />
               <ArticleStats article={article} />
             </div>

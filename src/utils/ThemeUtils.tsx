@@ -70,8 +70,8 @@ export const getHeadingColor = (color: string) => {
       return "bg-black text-white";
     case "light":
       return "bg-whitetext-black";
-    case "yellow":
-      return "bg-yellow-500 text-white";
+    case "orange":
+      return "bg-orange-500 text-white";
     case "border-dark":
       return "border-black";
     case "border-light":

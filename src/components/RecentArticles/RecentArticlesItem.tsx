@@ -26,14 +26,14 @@ export default function RecentArticlesItem({
           return (
             <div
               key={art.id}
-              className="w-full h-full bg-cover bg-center flex p-5"
+              className="w-full h-full bg-cover bg-center flex p-5 group"
               style={{ backgroundImage: `url("${art.img}")` }}
             >
               <div className="w-full h-full flex flex-col justify-end items-start text-white z-50 gap-3">
                 <div className="w-full flex flex-col justify-start items-start gap-2">
                   <Link
                     to="/articles"
-                    className={`px-3 py-1 text-sm font-medium
+                    className={`px-3 py-1 text-sm font-medium rounded-md
                 ${getCategoriesColor(art.category)}`}
                     onClick={() => setCategoryToDisplay(art.category)}
                   >
@@ -62,13 +62,13 @@ export default function RecentArticlesItem({
                     {author?.firstName}
                   </Link>
 
-                  <div className="flex justify-center items-center gap-2 text-sm">
+                  <div className="flex justify-center items-center gap-3   text-sm">
                     <p className="flex justify-center items-center gap-1">
-                      <AiFillLike />
+                      <AiFillLike size={18} />
                       {art.likes.length}
                     </p>
                     <p className="flex justify-center items-center gap-1">
-                      <FaCommentDots />
+                      <FaCommentDots size={18} />
                       {art.comments.length}
                     </p>
                   </div>
