@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ListItemProps } from "./ListItem";
-import { getRoleStyles } from "../../Utilities/ThemeUtils";
+import { getRoleStyles } from "../../utils/ThemeUtils";
 
 export default function ListItemInfo({ article, user }: ListItemProps) {
   return (

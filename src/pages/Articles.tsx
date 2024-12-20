@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import useMainContext from "../hooks/useMainContext";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
-import ArticleCard from "../components/Article/ArticleCard";
+import ArticleCard from "../components/ArticleCard/ArticleCard";
 import APHeading from "../components/AdminPanel/APHeading";
 import useLoading from "../hooks/useLoading";
 import APLoading from "../components/AdminPanel/APLoading";

@@ -1,7 +1,7 @@
 import React from "react";
 
 import useMainContext from "../../hooks/useMainContext";
-import { getCategoriesColor } from "../../Utilities/ThemeUtils";
+import { getCategoriesColor } from "../../utils/ThemeUtils";
 import { Link } from "react-router-dom";
 import UserAvatar from "../User/UserAvatar/UserAvatar";
 import { FaCommentDots } from "react-icons/fa";
@@ -25,6 +25,7 @@ export default function RecentArticlesItem({
           const author = userList?.find((user) => user.id === art.author);
           return (
             <div
+              key={art.id}
               className="w-full h-full bg-cover bg-center flex p-5"
               style={{ backgroundImage: `url("${art.img}")` }}
             >

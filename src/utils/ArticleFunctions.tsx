@@ -1,5 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
-import { ArticleProps, CommentProps, UserProps } from "./MainContextTypes";
+import {
+  ArticleProps,
+  CommentProps,
+  UserProps,
+} from "../context/MainContextTypes";
 import { doc, DocumentReference, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { SetStateAction } from "react";

@@ -9,7 +9,7 @@ import React, { SetStateAction } from "react";
 import { NavigateFunction } from "react-router-dom";
 
 import { doc, setDoc } from "firebase/firestore";
-import { UserProps } from "./MainContextTypes";
+import { UserProps } from "../context/MainContextTypes";
 
 export type AuthProps = {
   email: string;

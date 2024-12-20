@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getCategoriesColor } from "../../Utilities/ThemeUtils";
+import { getCategoriesColor } from "../../utils/ThemeUtils";
 import { Link } from "react-router-dom";
 import useMainContext from "../../hooks/useMainContext";
 

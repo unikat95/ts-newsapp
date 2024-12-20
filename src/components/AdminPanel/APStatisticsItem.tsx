@@ -1,6 +1,6 @@
 import React from "react";
 import { IconType } from "react-icons";
-import { getIconStyles } from "../../Utilities/ThemeUtils";
+import { getIconStyles } from "../../utils/ThemeUtils";
 
 type APStatisticsItemProps = {
   text: string;

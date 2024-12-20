@@ -3,7 +3,7 @@ import React from "react";
 import {
   getUserAvatarFontSize,
   getUserAvatarSize,
-} from "../../../Utilities/ThemeUtils";
+} from "../../../utils/ThemeUtils";
 import { UserProps } from "../../../context/MainContextTypes";
 
 type UserAvatarProps = {

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IconType } from "react-icons";
-import { getButtonStyles } from "../../Utilities/ThemeUtils";
+import { getButtonStyles } from "../../utils/ThemeUtils";
 
 type CTAButtonProps = {
   handleSubmit?: (e: { preventDefault: () => void }) => void;

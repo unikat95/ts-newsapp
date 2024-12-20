@@ -3,14 +3,25 @@ import React, { createContext, useState } from "react";
 import { MainContextProps, MainProviderProps } from "./MainContextTypes";
 import useAuth from "../hooks/useAuth";
 
-import { handleSignIn, handleSignUp, handleSignOut } from "./AuthFunctions";
+import {
+  handleSignIn,
+  handleSignUp,
+  handleSignOut,
+} from "../utils/AuthFunctions";
+
 import {
   CreateArticle,
   handleLikePost,
   handleEditArticle,
   handleAddComment,
   handleAddReply,
-} from "./ArticleFunctions";
+} from "../utils/ArticleFunctions";
+
+import {
+  handleSendMessage,
+  handleSendReply,
+  handleMarkAsRead,
+} from "../utils/MessageFunctions";
 
 import PageLoading from "../components/PageLoading/PageLoading";
 import useArticles from "../hooks/useArticles";
@@ -51,23 +62,18 @@ export default function MainProvider({ children }: MainProviderProps) {
     setCategoryToDisplay,
   } = useArticles();
 
-  const { messages, setMessages } = useMessages();
+  const {
+    messages,
+    setMessages,
+    incomingUnreadCount,
+    sentUnreadCount,
+    unreadMessagesCount,
+  } = useMessages();
 
   const [pageLoading, setPageLoading] = useState(true);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
-
-  const unreadMessages = messages?.filter((msg) => {
-    if (msg.from === currentUser?.id) {
-      return !msg.readBy[currentUser.id];
-    } else if (msg.to === currentUser?.id) {
-      return !msg.readBy[currentUser.id];
-    }
-    return false;
-  });
-
-  const unreadMessagesCount = unreadMessages?.length || 0;
 
   if (loading || initializing) return <PageLoading />;
   return (
@@ -105,6 +111,8 @@ export default function MainProvider({ children }: MainProviderProps) {
         messages,
         setMessages,
         unreadMessagesCount,
+        incomingUnreadCount,
+        sentUnreadCount,
 
         openDropdown,
         setOpenDropdown,
@@ -118,6 +126,9 @@ export default function MainProvider({ children }: MainProviderProps) {
         handleEditArticle,
         handleAddComment,
         handleAddReply,
+        handleSendMessage,
+        handleSendReply,
+        handleMarkAsRead,
 
         pageLoading,
         setPageLoading,

@@ -6,7 +6,7 @@ import SidebarCategories from "../components/Article/SidebarCategories";
 import RecentArticles from "../components/RecentArticles/RecentArticles";
 import SidebarHeading from "../components/Article/SidebarHeading";
 import useMainContext from "../hooks/useMainContext";
-import ArticleCard from "../components/Article/ArticleCard";
+import ArticleCard from "../components/ArticleCard/ArticleCard";
 import { Link } from "react-router-dom";
 
 export default function Home() {

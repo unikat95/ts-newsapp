@@ -1,16 +1,15 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import useMainContext from "../../hooks/useMainContext";
 import { UserProps } from "../../context/MainContextTypes";
 import UserAvatar from "../User/UserAvatar/UserAvatar";
 import { IoIosClose } from "react-icons/io";
 import CTAButton from "../CTAButton/CTAButton";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import FormLoader from "../FormLoader/FormLoader";
+import APHeading from "../AdminPanel/APHeading";
 
 export default function SendMessage() {
-  const { currentUser, userList } = useMainContext();
+  const { currentUser, userList, handleSendMessage } = useMainContext();
   const [formFields, setFormFields] = useState({
     userId: "",
     user: "",
@@ -19,6 +18,7 @@ export default function SendMessage() {
   });
   const [openUserList, setOpenUserList] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UserProps | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!formFields.user) {
@@ -58,43 +58,23 @@ export default function SendMessage() {
     setFormFields((prev) => ({ ...prev, userId: "" }));
   };
 
-  const handleSubmit = async () => {
-    if (!formFields.userId || !formFields.title || !formFields.message) return;
-    try {
-      const messageId = uuidv4();
-      const messageData = {
-        id: messageId,
-        from: currentUser?.id!,
-        to: formFields.userId,
-        title: formFields.title,
-        message: formFields.message,
-        sentAt: new Date().toISOString(),
-        readBy: {
-          [currentUser?.id!]: true,
-          [formFields.userId]: false,
-        },
-        replies: [],
-      };
-
-      await setDoc(doc(db, "messages", messageId), messageData);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setFormFields((prev) => ({
-        ...prev,
-        message: "",
-        title: "",
-        user: "",
-        userId: "",
-      }));
-
-      handleClearUser();
-    }
+  const handleSubmit = () => {
+    setLoading(true);
+    handleSendMessage({
+      currentUser,
+      userId: formFields.userId,
+      title: formFields.title,
+      message: formFields.message,
+      setFormFields,
+      handleClearUser,
+      setLoading,
+    });
   };
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]">
-      <form className="w-full flex flex-col justify-start items-end gap-2 p-5 rounded-lg">
+    <div className="w-full flex flex-col bg-white rounded-lg shadow-[0_1px_30px_0_rgba(0,0,0,0.05)] relative p-5 gap-5">
+      <APHeading text="Send message" />
+      <form className="w-full flex flex-col justify-start items-end gap-2 rounded-lg">
         {selectedUser ? (
           <div className="w-full bg-slate-100 px-3 py-2 border flex justify-between items-center">
             <div className="flex justify-start items-center gap-2">
@@ -163,6 +143,7 @@ export default function SendMessage() {
           handleSubmit={handleSubmit}
         />
       </form>
+      {loading && <FormLoader />}
     </div>
   );
 }

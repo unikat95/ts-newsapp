@@ -1,5 +1,5 @@
 import React from "react";
-import { getIconStyles } from "../../Utilities/ThemeUtils";
+import { getIconStyles } from "../../utils/ThemeUtils";
 
 type APUserCardStatItemProps = {
   children: React.ReactNode;

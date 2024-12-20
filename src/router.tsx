@@ -24,7 +24,7 @@ import Messages from "./pages/Messages";
 import SendMessage from "./components/Messages/SendMessage";
 import IncomingMessages from "./components/Messages/IncomingMessages";
 import SentMessages from "./components/Messages/SentMessages";
-import Message from "./components/Messages/Message";
+import Message from "./components/Message/Message";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,4 +1,5 @@
 import React from "react";
+import CTAButton from "../CTAButton/CTAButton";
 
 type APArticleModalProps = {
   handleCloseModal: () => void;
@@ -11,24 +12,19 @@ export default function APArticleModal({
 }: APArticleModalProps) {
   return (
     <div className="w-full h-full bg-black bg-opacity-20 flex justify-center items-center fixed top-0 left-0 z-[999]">
-      <div className="w-auto h-auto bg-white p-5 rounded-md flex flex-col justify-center items-center gap-7">
+      <div className="w-auto h-auto bg-white p-5 rounded-md flex flex-col justify-center items-center gap-5">
+        <h1 className="w-full text-xl">Delete article</h1>
         <div className="text-sm">
           <p>Are you sure you want to delete the article?</p>
           <p> This action cannot be undone.</p>
         </div>
         <div className="w-full flex items-end justify-end gap-2">
-          <button
-            className="hover:bg-zinc-800 px-4 py-2 hover:text-white rounded-md text-sm"
-            onClick={handleCloseModal}
-          >
-            Cancel
-          </button>
-          <button
-            className="hover:bg-red-500 px-4 py-2 hover:text-white rounded-md text-sm"
+          <CTAButton
+            text="Confirm"
+            variant="red"
             onClick={handleDeleteArticle}
-          >
-            Delete
-          </button>
+          />
+          <CTAButton text="Cancel" variant="dark" onClick={handleCloseModal} />
         </div>
       </div>
     </div>

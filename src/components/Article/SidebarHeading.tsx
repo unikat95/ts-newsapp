@@ -1,5 +1,5 @@
 import React from "react";
-import { getHeadingColor } from "../../Utilities/ThemeUtils";
+import { getHeadingColor } from "../../utils/ThemeUtils";
 
 type SidebarHeadingProps = {
   text: string;

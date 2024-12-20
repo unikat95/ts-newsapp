@@ -1,13 +1,18 @@
 import { User } from "firebase/auth";
 import React, { SetStateAction } from "react";
-import { AuthProps, SignOutProps } from "./AuthFunctions";
+import { AuthProps, SignOutProps } from "../utils/AuthFunctions";
 import {
   AddCommentProps,
   AddReplyProps,
   CreateArticleProps,
   EditArticleProps,
   LikePostProps,
-} from "./ArticleFunctions";
+} from "../utils/ArticleFunctions";
+import {
+  MarkAsReadProps,
+  SendMessageProps,
+  SendReplyProps,
+} from "../utils/MessageFunctions";
 
 export type UserProps = {
   id: string;
@@ -100,13 +105,14 @@ export type MainContextProps = {
   setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
   categoryToDisplay: string;
   setCategoryToDisplay: React.Dispatch<SetStateAction<string>>;
-
   sortedArticles: ArticleProps[];
   sortedUsers: UserProps[] | undefined;
 
   messages: MessagesProps[] | null;
   setMessages: React.Dispatch<SetStateAction<MessagesProps[] | null>>;
   unreadMessagesCount: number;
+  incomingUnreadCount: number;
+  sentUnreadCount: number;
 
   openDropdown: boolean;
   setOpenDropdown: React.Dispatch<SetStateAction<boolean>>;
@@ -145,7 +151,6 @@ export type MainContextProps = {
     text,
     currentUser,
   }: CreateArticleProps) => Promise<void>;
-
   handleLikePost: ({
     currentUser,
     setLikeLoading,
@@ -154,7 +159,6 @@ export type MainContextProps = {
     article,
     likeRef,
   }: LikePostProps) => Promise<void>;
-
   handleEditArticle: ({
     setIsEditing,
     editedArticleRef,
@@ -173,7 +177,6 @@ export type MainContextProps = {
     article,
     setCommentMsg,
   }: AddCommentProps) => Promise<void>;
-
   handleAddReply: ({
     currentUser,
     replyMsg,
@@ -181,6 +184,26 @@ export type MainContextProps = {
     comment,
     setReplyMsg,
   }: AddReplyProps) => Promise<void>;
+
+  handleSendMessage: ({
+    currentUser,
+    userId,
+    title,
+    message,
+    setFormFields,
+    handleClearUser,
+    setLoading,
+  }: SendMessageProps) => Promise<void>;
+  handleSendReply: ({
+    message,
+    currentUser,
+    replyMessage,
+    setReplyMessage,
+  }: SendReplyProps) => Promise<void>;
+  handleMarkAsRead: ({
+    message,
+    currentUser,
+  }: MarkAsReadProps) => Promise<void>;
 };
 export type MainProviderProps = {
   children: React.ReactNode;
