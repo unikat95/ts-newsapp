@@ -11,7 +11,6 @@ import ListItemText from "./ListItemText";
 import ListItemInfo from "./ListItemInfo";
 import ListItemDropdownButton from "./ListItemDropdownButton";
 import UserAvatar from "../User/UserAvatar/UserAvatar";
-import ListItemImg from "./ListItemImg";
 import { useLocation } from "react-router-dom";
 
 export type ListItemProps = {
@@ -58,6 +57,8 @@ export default function ListItem({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const pathToCheck = ["user-list", "users"];
+
   return (
     <>
       <div
@@ -66,14 +67,20 @@ export default function ListItem({
         ref={dropdownRef}
       >
         <div className="w-full grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto_auto] justify-start items-center gap-5">
-          {location.pathname.includes("user-list") ? (
+          {pathToCheck.some((path) => location.pathname.includes(path)) ? (
             <UserAvatar size="xs" user={user} />
           ) : (
-            <ListItemImg article={article} user={user} />
+            <img
+              src={article?.img}
+              alt=""
+              className="w-10 h-8 rounded-md object-cover"
+            />
           )}
           <ListItemText article={article} user={user} />
           <ListItemInfo article={article} user={user} />
-          <ListItemDropdownButton handleToggleOpen={handleToggleOpen} />
+          {!location.pathname.includes("users") && (
+            <ListItemDropdownButton handleToggleOpen={handleToggleOpen} />
+          )}
         </div>
         {isOpen && (
           <Dropdown

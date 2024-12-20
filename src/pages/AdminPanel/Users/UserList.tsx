@@ -20,9 +20,12 @@ export default function UserList() {
   return (
     <>
       {usersToDisplay && (
-        <div className="w-full h-full bg-white md:bg-slate-200 flex flex-col">
-          <div className="w-full h-full bg-white flex flex-col justify-start items-start rounded-xl p-5 overflow-auto gap-5">
-            <APHeading text="All Users" />
+        <div className="w-full h-full bg-white flex flex-col">
+          <div
+            className={`w-full h-full bg-white flex flex-col justify-start items-start rounded-xl overflow-auto gap-5
+            ${!location.pathname.includes("users") && "p-5"}`}
+          >
+            <APHeading text="User list" />
             <APSearch
               setLoading={setUserLoading}
               setUsersToDisplay={setUsersToDisplay}

@@ -22,7 +22,7 @@ export default function SidebarCategories() {
             <Link
               key={cat.id}
               to={`/articles`}
-              className="w-full flex justify-between items-center border-t last:border-b py-3 group"
+              className="w-full bg-white flex justify-between items-center p-3 group shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]"
               onClick={() => setCategoryToDisplay(cat.value)}
             >
               <div className="text sm flex justify-center items-center gap-2">

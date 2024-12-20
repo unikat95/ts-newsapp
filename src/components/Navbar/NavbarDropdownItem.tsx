@@ -1,6 +1,7 @@
 import React, { SetStateAction } from "react";
 import { IconType } from "react-icons";
 import { Link } from "react-router-dom";
+import useMainContext from "../../hooks/useMainContext";
 
 type NavbarDropdownItemProps = {
   name: string;
@@ -15,9 +16,10 @@ export default function NavbarDropdownItem({
   Icon,
   setOpenDropdown,
 }: NavbarDropdownItemProps) {
+  const { unreadMessagesCount } = useMainContext();
   return (
     <li
-      className="bg-white hover:bg-neutral-100 w-full border-b first:border-t text-nowrap"
+      className="flex justify-center items-center bg-white hover:bg-neutral-100 w-full border-b first:border-t text-nowrap relative"
       onClick={() => setOpenDropdown(false)}
     >
       <Link
@@ -27,6 +29,9 @@ export default function NavbarDropdownItem({
         <Icon className="text-neutral-500" size={18} />
         {name}
       </Link>
+      {name === "Messages" && unreadMessagesCount > 0 && (
+        <span className="absolute right-1 bg-red-500 rounded-full size-[10px] flex justify-center items-center z-[999] animate-pulse"></span>
+      )}
     </li>
   );
 }

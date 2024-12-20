@@ -17,12 +17,12 @@ export default function SidebarHeading({
   return (
     <div
       className={`
-    w-full bg- flex justify-start items-start border-b-[3px] border-black
+    w-full bg- flex justify-start items-start border-b-[4px] border-black
     ${border && getHeadingColor(border)}`}
     >
       <h4
         className={`
-      bg-black text-white px-5 pt-2 pb-[5px]
+      bg-black text-white px-5 pt-2 pb-[3px]
       ${fontSize}
       ${color && getHeadingColor(color)}`}
       >

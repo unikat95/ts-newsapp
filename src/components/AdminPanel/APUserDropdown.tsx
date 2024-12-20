@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import { RiExternalLinkFill } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
-import { MdAdminPanelSettings } from "react-icons/md";
 import useMainContext from "../../hooks/useMainContext";
 import Modal from "../Modal/Modal";
 import EditUser from "../EditUser/EditUser";
@@ -55,15 +54,6 @@ export default function APUserDropdown({
             >
               <FaRegEdit size={17} />
               Edit user
-            </button>
-          </li>
-          <li className="w-full rounded-md relative">
-            <button
-              className="w-full hover:bg-slate-100 flex justify-start items-center gap-2 px-2 py-2"
-              onClick={handleToggleOpen}
-            >
-              <MdAdminPanelSettings size={17} />
-              Role
             </button>
           </li>
         </ul>

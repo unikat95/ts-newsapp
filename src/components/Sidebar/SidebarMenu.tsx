@@ -32,7 +32,7 @@ export default function SidebarMenu({ setOpenMenu }: SidebarMenuProps) {
   return (
     <div className="w-full h-full flex flex-col justify-start items-center gap-1 p-5">
       <Link to="/" className="w-full h-auto flex justify-center items-start">
-        <div className="w-1/2 pt-5 pb-10">
+        <div className="w-full flex justify-center items-center pt-5 pb-10">
           <Logo fill="white" />
         </div>
       </Link>

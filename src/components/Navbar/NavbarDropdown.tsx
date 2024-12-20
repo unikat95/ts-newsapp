@@ -56,7 +56,7 @@ export default function NavbarDropdown() {
         <NavbarDropdownItem
           Icon={MdMessage}
           name="Messages"
-          to="/profile/messages"
+          to="/profile/messages/incoming-messages"
           setOpenDropdown={setOpenDropdown}
         />
         <NavbarDropdownItem

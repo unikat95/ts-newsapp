@@ -27,14 +27,14 @@ export default function SidebarRecomendedArticles({
   return (
     <div className="w-full flex flex-col gap-5">
       <SidebarHeading text="Recommended articles" />
-      <div className="flex flex-wrap justify-start items-start">
+      <div className="flex flex-wrap justify-start items-start gap-2">
         {shuffledArticles.length === 0
           ? "There are no articles available in this category."
           : shuffledArticles.map((art) => (
               <Link
                 to={`/articles/article/${art.id}`}
                 key={art.id}
-                className="w-full flex justify-center items-center gap-2 border-b first:border-t py-3 group"
+                className="w-full bg-white flex justify-center items-center gap-2 p-3 group shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]"
                 onClick={() => setArticleLoading(true)}
               >
                 <div className="w-full flex justify-center items-center gap-2">
@@ -45,7 +45,7 @@ export default function SidebarRecomendedArticles({
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <p className="w-full line-clamp-2 group-hover:underline">
+                  <p className="w-full line-clamp-1 group-hover:underline">
                     {art.title}
                   </p>
                   <div className="w-auto">

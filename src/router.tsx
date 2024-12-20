@@ -14,14 +14,17 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import CreateArticle from "./pages/AdminPanel/Articles/CreateArticle";
 import ArticleList from "./pages/AdminPanel/Articles/ArticleList";
-import Archive from "./pages/AdminPanel/Articles/Archive";
 import UserList from "./pages/AdminPanel/Users/UserList";
 import Administrators from "./pages/AdminPanel/Users/Administrators";
 import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
 import Article from "./pages/Article";
 import User from "./pages/User";
 import EditArticle from "./pages/AdminPanel/Articles/EditArticle";
-import Xd from "./pages/Xd";
+import Messages from "./pages/Messages";
+import SendMessage from "./components/Messages/SendMessage";
+import IncomingMessages from "./components/Messages/IncomingMessages";
+import SentMessages from "./components/Messages/SentMessages";
+import Message from "./components/Messages/Message";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,7 +34,6 @@ export const router = createBrowserRouter(
       <Route path="/articles/article/:id" element={<Article />} />
       <Route path="/users" element={<Users />} />
       <Route path="/users/user/:id" element={<User />} />
-      <Route path="/xd" element={<Xd />} />
       <Route path="/auth" element={<Auth />} />
       <Route
         path="/profile"
@@ -45,13 +47,16 @@ export const router = createBrowserRouter(
         <Route index element={<AdminPanelHome />} />
         <Route path="create-article" element={<CreateArticle />} />
         <Route path="edit-article/:id" element={<EditArticle />} />
-        <Route path="edit-user/:id" element={<>Edit user</>} />
         <Route path="article-list" element={<ArticleList />} />
-        <Route path="archive" element={<Archive />} />
         <Route path="user-list" element={<UserList />} />
         <Route path="user-ranks" element={<Administrators />} />
       </Route>
-      <Route path="/profile/messages" element={<>Messages</>} />
+      <Route path="/profile/messages" element={<Messages />}>
+        <Route path=":id" element={<Message />} />
+        <Route path="incoming-messages" element={<IncomingMessages />} />
+        <Route path="sent-messages" element={<SentMessages />} />
+        <Route path="send-message" element={<SendMessage />} />
+      </Route>
     </Route>
   )
 );

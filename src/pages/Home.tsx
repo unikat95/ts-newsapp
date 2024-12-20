@@ -34,7 +34,7 @@ export default function Home() {
             See all articles
           </Link>
         </div>
-        <div className="w-full lg:w-3/5 xl:w-2/5">
+        <div className="w-full flex flex-col lg:w-3/5 xl:w-2/5 gap-5">
           <SidebarCategories />
           <SidebarRecentArticles />
         </div>

@@ -1,10 +1,11 @@
 import React from "react";
-import APLoading from "../components/AdminPanel/APLoading";
-import useLoading from "../hooks/useLoading";
+
+import UserList from "./AdminPanel/Users/UserList";
 
 export default function Users() {
-  const loading = useLoading();
-  if (loading) return <APLoading />;
-
-  return <div>Users</div>;
+  return (
+    <div className="w-full h-full flex flex-col justify-center items-start gap-5">
+      <UserList />
+    </div>
+  );
 }

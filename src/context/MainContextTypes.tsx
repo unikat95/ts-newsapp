@@ -54,6 +54,26 @@ export type ArticleProps = {
   likes: LikeProps[];
 };
 
+export type RepliesProps = {
+  id: string;
+  from: string;
+  message: string;
+  sentAt: Date;
+};
+
+export type MessagesProps = {
+  id: string;
+  from: string;
+  to: string;
+  title: string;
+  message: string;
+  sentAt: Date;
+  readBy: {
+    [userId: string]: boolean;
+  };
+  replies: RepliesProps[];
+};
+
 export type MainContextProps = {
   user: User | null;
   setUser: React.Dispatch<SetStateAction<User | null>>;
@@ -83,6 +103,10 @@ export type MainContextProps = {
 
   sortedArticles: ArticleProps[];
   sortedUsers: UserProps[] | undefined;
+
+  messages: MessagesProps[] | null;
+  setMessages: React.Dispatch<SetStateAction<MessagesProps[] | null>>;
+  unreadMessagesCount: number;
 
   openDropdown: boolean;
   setOpenDropdown: React.Dispatch<SetStateAction<boolean>>;

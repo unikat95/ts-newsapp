@@ -39,7 +39,7 @@ body {
 
 body {
   font-family: "Poppins", sans-serif;
-  background: white;
+  background: rgb(251, 252, 253);
 }
 
 input:-webkit-autofill,

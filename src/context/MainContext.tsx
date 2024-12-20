@@ -14,6 +14,7 @@ import {
 
 import PageLoading from "../components/PageLoading/PageLoading";
 import useArticles from "../hooks/useArticles";
+import useMessages from "../hooks/useMessages";
 
 export const MainContext = createContext<MainContextProps | null>(null);
 
@@ -50,15 +51,25 @@ export default function MainProvider({ children }: MainProviderProps) {
     setCategoryToDisplay,
   } = useArticles();
 
+  const { messages, setMessages } = useMessages();
+
   const [pageLoading, setPageLoading] = useState(true);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
+  const unreadMessages = messages?.filter((msg) => {
+    if (msg.from === currentUser?.id) {
+      return !msg.readBy[currentUser.id];
+    } else if (msg.to === currentUser?.id) {
+      return !msg.readBy[currentUser.id];
+    }
+    return false;
+  });
+
+  const unreadMessagesCount = unreadMessages?.length || 0;
+
   if (loading || initializing) return <PageLoading />;
-
-  console.log(isActive);
-
   return (
     <MainContext.Provider
       value={{
@@ -90,6 +101,10 @@ export default function MainProvider({ children }: MainProviderProps) {
 
         sortedArticles,
         sortedUsers,
+
+        messages,
+        setMessages,
+        unreadMessagesCount,
 
         openDropdown,
         setOpenDropdown,

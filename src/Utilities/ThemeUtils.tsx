@@ -83,25 +83,29 @@ export const getHeadingColor = (color: string) => {
 
 export const getUserAvatarSize = (size: string) => {
   switch (size) {
+    case "2xs":
+      return "size-6";
     case "xs":
-      return "w-8 h-8 border-2";
+      return "size-8";
     case "sm":
-      return "w-12 h-12 border-4";
+      return "size-12 border-4";
     case "md":
-      return "w-24 h-24 border-[5px]";
+      return "size-24 border-[5px]";
     case "lg":
-      return "w-48 h-48 border-[7px]";
+      return "size-48 border-[7px]";
     case "xl":
-      return "w-52 h-52 border-8";
+      return "size-52 border-8";
     case "ap":
-      return "w-20 h-20 rounded-lg";
+      return "size-20 rounded-lg";
   }
 };
 
 export const getUserAvatarFontSize = (size: string) => {
   switch (size) {
+    case "2xs":
+      return "text-xs";
     case "xs":
-      return "text-base";
+      return "text-sm";
     case "sm":
       return "text-xl";
     case "md":

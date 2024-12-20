@@ -20,9 +20,9 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <div
       key={article.id}
-      className="w-full grid grid-cols-1 md:grid-cols-[auto_1fr] border-b pb-5 gap-5 group"
+      className="w-full bg-white grid grid-cols-1 md:grid-cols-[auto_1fr] p-5 gap-5 group shadow-[0_1px_30px_0_rgba(0,0,0,0.05)]"
     >
-      <div className="w-full md:w-[16rem] h-[14rem] overflow-hidden">
+      <div className="w-full md:w-[12rem] h-[14rem] lg:w-[14rem] overflow-hidden rounded-xl">
         <img
           src={article.img}
           alt=""
@@ -40,11 +40,11 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           >
             {article.title}
           </Link>
-          <div className="line-clamp-4 md:line-clamp-3 text-secondary-text">
+          <div className="line-clamp-4 md:line-clamp-2 text-secondary-text">
             {HTMLReactParser(article.text)}
           </div>
         </div>
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full flex justify-between items-end">
           <div className="text-sm text-slate-600 font-medium flex flex-col justify-start items-start xl:flex-row gap- xl:gap-5">
             <div className="flex flex-col md:flex-row justify-center items-start md:items-center gap-1 text-tertiary-text">
               <div className="flex justify-center items-center gap-1">
@@ -67,12 +67,12 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           <div className="flex justify-center items-center gap-5">
             <div className="flex justify-center items-center gap-3">
               <div className="flex justify-center items-center gap-1 text-secondary-text">
-                {article.likes.length}
                 <AiFillLike className="mb-1" />
+                {article.likes.length}
               </div>
               <div className="flex justify-center items-center gap-1 text-secondary-text">
-                {article.comments.length}
                 <FaRegCommentDots />
+                {article.comments.length}
               </div>
             </div>
           </div>

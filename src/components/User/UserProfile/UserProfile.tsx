@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import UserProfileLinks from "../UserProfileLinks/UserProfileLinks";
 
 import { RiInfoCardLine } from "react-icons/ri";
+import APHeading from "../../AdminPanel/APHeading";
 
 type UserProfileProps = {
   user: UserProps | null | undefined;
@@ -24,7 +25,7 @@ export default function UserProfile({
 
   return (
     <div className="w-full bg-white h-full flex flex-col justify-center items-end gap-5">
-      <h3 className="w-full">User information:</h3>
+      <APHeading text="User information" />
       <div className="w-full h-full flex flex-col justify-center items-start">
         <div
           className={`w-full h-[25rem] flex flex-col justify-start items-center gap-5 p-20 bg-cover bg-center relative after:absolute after:w-full after:h-full after:top-0 after:left-0 after:bg-black after:bg-opacity-10 after:transition-all after:duration-200 group backdrop-blur-md
