@@ -24,7 +24,7 @@ To set up the application locally:
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone <https://github.com/unikat95/ts-newsapp.git>
 
 # Live demo
 [Live demo](https://ts-neswapp.web.app/)
