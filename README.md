@@ -1,50 +1,30 @@
-# React + TypeScript + Vite
+# [React/TS] Newsg App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Newsg App is a dynamic platform for sharing and engaging with news articles, designed to promote interaction and foster discussions among users. 
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application includes the following functionality:
+- User registration and login
+- User profile editing
+- Creation and posting of new articles
+- Reactions to posts, including likes and dislikes
+- Commenting on posts to foster discussions
+- Messaging system for private communication between users
+- Admin features for user management
 
-## Expanding the ESLint configuration
+The app is built using:
+- **React** and **TypeScript** for robust front-end development
+- **TailwindCSS** for styling
+- **Firebase** for backend services, including authentication and database.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+To set up the application locally:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+# Live demo
+[Live demo](https://ts-neswapp.web.app/)
