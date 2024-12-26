@@ -5,7 +5,7 @@ import UserAvatar from "../User/UserAvatar/UserAvatar";
 
 export default function APUserCard() {
   const { currentUser, articles } = useMainContext();
-  const [totalArticles, setTotalArticles] = useState<number>();
+  const [totalLikes, setTotalLikes] = useState<number>();
   const [totalComments, setTotalComments] = useState<number>();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function APUserCard() {
         return total + userCommentCount;
       }, 0);
 
-      setTotalArticles(userLikes.length);
+      setTotalLikes(userLikes.length);
       setTotalComments(userComments);
     }
   }, [articles]);
@@ -50,7 +50,7 @@ export default function APUserCard() {
             {totalComments}
           </APUserCardStatItem>
           <APUserCardStatItem text="Likes" color="red">
-            {totalArticles}
+            {totalLikes}
           </APUserCardStatItem>
         </div>
       </div>

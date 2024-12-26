@@ -15,8 +15,8 @@ import CreateArticleInput from "../../../components/CreateArticle/CreateArticleI
 import useLoading from "../../../hooks/useLoading";
 import APLoading from "../../../components/AdminPanel/APLoading";
 import ArticlePreview from "../../../components/Article/ArticlePreview";
-import CTAButton from "../../../components/CTAButton/CTAButton";
 import APHeading from "../../../components/AdminPanel/APHeading";
+import Button from "../../../components/ui/Button/Button";
 
 export default function EditArticle() {
   const { id } = useParams();
@@ -104,18 +104,20 @@ export default function EditArticle() {
           />
         </div>
         <div className="w-full flex justify-end items-center gap-2">
-          <CTAButton
-            onClick={() => setOpenPreview(!openPreview)}
-            text="Preview"
-            Icon={FaEye}
+          <Button
             variant="blue"
+            onClick={() => setOpenPreview(!openPreview)}
+            Icon={FaEye}
+            disabled={isEditing}
+            text="Preview"
           />
-          <CTAButton
-            handleSubmit={handleSubmit}
-            text="Save changes"
-            Icon={FaSave}
-            disabled={!formField.title || !formField.img || !formField.text}
+          <Button
             variant="dark"
+            onClick={handleSubmit}
+            Icon={FaSave}
+            disabled={isEditing}
+            loading={isEditing}
+            text="Save changes"
           />
         </div>
         {isEditing && (

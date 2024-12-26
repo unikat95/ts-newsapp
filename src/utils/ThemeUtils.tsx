@@ -1,5 +1,7 @@
 export const getIconStyles = (variant: string) => {
   switch (variant) {
+    case "light":
+      return "text-white";
     case "green":
       return "text-green-400";
     case "red":
@@ -72,6 +74,8 @@ export const getHeadingColor = (color: string) => {
       return "bg-whitetext-black";
     case "orange":
       return "bg-orange-500 text-white";
+    case "green":
+      return "bg-green-500";
     case "border-dark":
       return "border-black";
     case "border-light":

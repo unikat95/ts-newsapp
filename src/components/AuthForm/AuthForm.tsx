@@ -22,6 +22,7 @@ export default function AuthForm({
 }: AuthFormProps) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   const { handleSignIn, handleSignUp, setInitializing } = useMainContext();
 
@@ -44,6 +45,7 @@ export default function AuthForm({
         setLoading,
         navigate,
         setInitializing,
+        setError,
       });
     } else {
       handleSignIn({
@@ -52,6 +54,7 @@ export default function AuthForm({
         setLoading,
         navigate,
         setInitializing,
+        setError,
       });
     }
   };
@@ -61,19 +64,27 @@ export default function AuthForm({
       <form
         className="w-full flex flex-col gap-3 justify-center items-center relative"
         onSubmit={handleSubmit}
+        autoComplete="off"
       >
         <AuthFormInput
           type="email"
           placeholder="enter email..."
           formField={formField.email}
+          error={error?.includes("email") ? error : null}
           handleInputChange={handleInputChange}
         />
         <AuthFormInput
           type="password"
           placeholder="enter password..."
           formField={formField.password}
+          error={error?.toLocaleLowerCase().includes("password") ? error : null}
           handleInputChange={handleInputChange}
         />
+        {error && (
+          <p className="w-full flex justify-center items-center p-3 rounded-md bg-red-500 text-white text-sm">
+            {error}
+          </p>
+        )}
         <FormButton
           onClick={handleSubmit}
           text={isSignedIn ? "Sign Up" : "Sign In"}

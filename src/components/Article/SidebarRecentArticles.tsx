@@ -8,11 +8,13 @@ import { TbArticleFilled } from "react-icons/tb";
 type RecentArticlesProps = {
   articleId?: string;
   setArticleLoading?: Dispatch<SetStateAction<boolean>>;
+  length?: number;
 };
 
 export default function SidebarRecentArticles({
   articleId,
   setArticleLoading,
+  length = 3,
 }: RecentArticlesProps) {
   const { sortedArticles } = useMainContext();
   const recentArticles = sortedArticles.filter((art) => art.id !== articleId);
@@ -48,7 +50,7 @@ export default function SidebarRecentArticles({
               </div>
             </Link>
           ))
-          .slice(0, 3)}
+          .slice(0, length)}
       </div>
     </div>
   );

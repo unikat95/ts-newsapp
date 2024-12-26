@@ -17,6 +17,7 @@ export type AuthProps = {
   setLoading: React.Dispatch<SetStateAction<boolean>>;
   navigate: NavigateFunction;
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
+  setError: React.Dispatch<SetStateAction<string | null>>;
 };
 
 export type SignOutProps = {
@@ -27,12 +28,27 @@ export type SignOutProps = {
   setOpenDropdown: React.Dispatch<SetStateAction<boolean>>;
 };
 
+const getCustomErrorMessage = (errorCode: string): string => {
+  const errorMessage: { [key: string]: string } = {
+    "auth/email-already-in-use": "This email is already in use.",
+    "auth/weak-password": "Password must be at least 6 characters.",
+    "auth/invalid-email": "Please enter a valid email address.",
+    "auth/invalid-credential": "Incorrect email or password. Try again.",
+    "auth/user-not-found": "User not found. Please sign up.",
+    "auth/wrong-password": "Incorrect password. Try again.",
+    "auth/missing-password": "You did not enter your password",
+  };
+
+  return errorMessage[errorCode] || "something went wrong";
+};
+
 export const handleSignUp = async ({
   email,
   password,
   setLoading,
   navigate,
   setInitializing,
+  setError,
 }: AuthProps) => {
   setLoading(true);
   await createUserWithEmailAndPassword(auth, email, password)
@@ -60,6 +76,7 @@ export const handleSignUp = async ({
     })
     .catch((error) => {
       console.log(error);
+      setError(getCustomErrorMessage(error.code));
       setLoading(false);
     });
 };
@@ -70,6 +87,7 @@ export const handleSignIn = async ({
   setLoading,
   navigate,
   setInitializing,
+  setError,
 }: AuthProps) => {
   setLoading(true);
   await signInWithEmailAndPassword(auth, email, password)
@@ -80,6 +98,7 @@ export const handleSignIn = async ({
     })
     .catch((error) => {
       console.log(error);
+      setError(getCustomErrorMessage(error.code));
       setLoading(false);
     });
 };

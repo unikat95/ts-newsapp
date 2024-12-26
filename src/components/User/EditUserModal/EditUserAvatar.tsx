@@ -13,6 +13,7 @@ type EditUserAvatarProps = {
       lastName: string | undefined;
       birthDate: string | undefined;
       avatar: string | undefined;
+      about: string | undefined;
     }>
   >;
 };
@@ -30,7 +31,7 @@ export default function EditUserAvatar({
       className="w-full md:w-auto flex justify-center items-center group"
     >
       {formField ? (
-        <div className="w-full h-full flex justify-center items-center relative hover:brightness-90 duration-200">
+        <div className="w-full h-full flex justify-center items-center relative hover:brightness-90">
           <img
             src={formField === "" ? currentUser?.avatar : formField}
             alt=""

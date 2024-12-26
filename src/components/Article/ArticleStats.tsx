@@ -5,6 +5,7 @@ import { ArticleProps } from "../../context/MainContextTypes";
 import useMainContext from "../../hooks/useMainContext";
 import { doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { FaCommentDots } from "react-icons/fa";
 
 type ArticleStatsProps = {
   article: ArticleProps;
@@ -21,21 +22,17 @@ export default function ArticleStats({ article }: ArticleStatsProps) {
   return (
     <div className="w-full flex justify-start md:justify-end items-end md:items-center gap-3">
       <div className="w-full flex justify-strart md:justify-end items-center gap-2">
-        <div className="text-sm text-secondary-text flex gap-1">
-          <span
-            className={`
-          text-blue-500 font-semibold
-          ${likeLoading && "animate-ping"}`}
-          >
-            {article.likes.length}
-          </span>
-          <p>likes,</p>
-        </div>
-        <div className="text-sm text-secondary-text flex gap-1">
-          <span className="text-orange-500 font-semibold">
-            {article.comments.length}
-          </span>
-          <p>comments</p>
+        <div className="flex justify-center items-center gap-3">
+          <div className="flex justify-center items-center gap-1 text-blue-500">
+            <AiFillLike size={16} className="mb-1" />
+            <p className={`text-primary-text ${likeLoading && "animate-ping"}`}>
+              {article.likes.length}
+            </p>
+          </div>
+          <div className="flex justify-center items-center gap-1 text-orange-500">
+            <FaCommentDots size={15} className="mb-1" />
+            <p className="text-primary-text">{article.comments.length}</p>
+          </div>
         </div>
       </div>
       {currentUser && (

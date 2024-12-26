@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 import useMainContext from "../hooks/useMainContext";
@@ -14,11 +14,12 @@ import ArticleCategory from "../components/Article/ArticleCategory";
 import LoadingBar from "../components/LoadingBar/LoadingBar";
 import ArticleStats from "../components/Article/ArticleStats";
 import Comments from "../components/Comment/Comments";
+import NotFound from "./NotFound";
 
 export default function Article() {
   const { id } = useParams();
-  const { articles, userList } = useMainContext();
-  const [articleLoading, setArticleLoading] = useState(false);
+  const { articles, userList, articleLoading, setArticleLoading } =
+    useMainContext();
   const loading = useLoading();
 
   const article = articles.find((art) => art.id === id);
@@ -36,7 +37,7 @@ export default function Article() {
   }
 
   if (!article) {
-    return <p className="text-center">Article not found!</p>;
+    return <NotFound />;
   }
 
   return (

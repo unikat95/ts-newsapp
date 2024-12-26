@@ -63,7 +63,7 @@ export default function ListItem({
     <>
       <div
         key={(article && article.id) || (user && user.id)}
-        className="w-full h-auto flex flex-col justify-between px-4 py-3 gap-5 border rounded-xl relative .user-dropdown"
+        className="w-full h-auto bg-white flex flex-col justify-between px-4 py-3 gap-5 border rounded-xl relative .user-dropdown"
         ref={dropdownRef}
       >
         <div className="w-full grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto_auto] justify-start items-center gap-5">

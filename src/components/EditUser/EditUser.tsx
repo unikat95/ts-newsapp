@@ -1,13 +1,12 @@
 import React, { ChangeEvent, SetStateAction, useState } from "react";
 
 import useMainContext from "../../hooks/useMainContext";
-import CTAButton from "../CTAButton/CTAButton";
-import { FaSave } from "react-icons/fa";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { UserProps } from "../../context/MainContextTypes";
 import { PuffLoader } from "react-spinners";
 import UserAvatar from "../User/UserAvatar/UserAvatar";
+import Button from "../ui/Button/Button";
 
 type EditUserProps = {
   user: UserProps | null | undefined;
@@ -18,15 +17,11 @@ type EditUserProps = {
 const userRole = [
   {
     id: 0,
-    value: "administrator",
+    value: "user",
   },
   {
     id: 1,
-    value: "moderator",
-  },
-  {
-    id: 2,
-    value: "user",
+    value: "administrator",
   },
 ];
 
@@ -160,16 +155,22 @@ export default function EditUser({
           </label>
         </div>
         <div className="flex gap-2">
-          <CTAButton
-            text="Save changes"
-            Icon={FaSave}
+          <Button
             variant="dark"
-            handleSubmit={handleSaveChanges}
+            onClick={handleSaveChanges}
+            disabled={isEditing}
+            loading={isEditing}
+            text="Save changes"
           />
-          <CTAButton text="Cancel" variant="red" onClick={handleCloseModal} />
+          <Button
+            variant="red"
+            onClick={handleCloseModal}
+            disabled={isEditing}
+            text="Cancel"
+          />
         </div>
         {isEditing && (
-          <div className="w-full h-full bg-white bg-opacity-40 flex justify-center items-center absolute top-0 left-0">
+          <div className="w-full h-full bg-white bg-opacity-70 flex justify-center items-center absolute top-0 left-0 z-[20]">
             <PuffLoader color="#5ac3f8" />
           </div>
         )}

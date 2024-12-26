@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { db } from "../config/firebase";
 import { MessagesProps, UserProps } from "../context/MainContextTypes";
 import { SetStateAction } from "react";
+import { NavigateFunction } from "react-router-dom";
 
 export type SendMessageProps = {
   currentUser: UserProps | null;
@@ -17,6 +18,10 @@ export type SendMessageProps = {
   }) => void;
   setLoading: React.Dispatch<SetStateAction<boolean>>;
   handleClearUser: () => void;
+  setShowPopup: React.Dispatch<SetStateAction<boolean>>;
+  setPopupMessage: (msg: string) => void;
+  msg: string;
+  navigate: NavigateFunction;
 };
 
 export type SendReplyProps = {
@@ -24,6 +29,10 @@ export type SendReplyProps = {
   currentUser: UserProps | null;
   replyMessage: string;
   setReplyMessage: React.Dispatch<SetStateAction<string>>;
+  setShowPopup: React.Dispatch<SetStateAction<boolean>>;
+  setPopupMessage: (msg: string) => void;
+  msg: string;
+  setLoading: React.Dispatch<SetStateAction<boolean>>;
 };
 
 export type MarkAsReadProps = {
@@ -39,6 +48,10 @@ export const handleSendMessage = async ({
   setFormFields,
   handleClearUser,
   setLoading,
+  setShowPopup,
+  setPopupMessage,
+  msg,
+  navigate,
 }: SendMessageProps) => {
   if (!userId || !title || !message) return;
   try {
@@ -71,7 +84,10 @@ export const handleSendMessage = async ({
           userId: "",
         });
 
+        setShowPopup(true);
+        setPopupMessage(msg);
         handleClearUser();
+        navigate("/profile/messages/sent-messages");
       }, 1000)
     );
   }
@@ -82,7 +98,12 @@ export const handleSendReply = async ({
   currentUser,
   replyMessage,
   setReplyMessage,
+  setShowPopup,
+  setPopupMessage,
+  msg,
+  setLoading,
 }: SendReplyProps) => {
+  if (!replyMessage) return;
   if (message) {
     try {
       const replyData = {
@@ -98,11 +119,19 @@ export const handleSendReply = async ({
         message.from === currentUser?.id ? message.to : message.from;
       const updatedReadBy = { ...message.readBy, [otherUser]: false };
 
-      await updateDoc(doc(db, "messages", message?.id), {
-        replies,
-        readBy: updatedReadBy,
-      });
-      setReplyMessage("");
+      await new Promise((res) =>
+        setTimeout(() => {
+          res;
+          updateDoc(doc(db, "messages", message?.id), {
+            replies,
+            readBy: updatedReadBy,
+          });
+          setLoading(false);
+          setShowPopup(true);
+          setPopupMessage(msg);
+          setReplyMessage("");
+        }, 1000)
+      );
     } catch (error) {
       console.log(error);
     }

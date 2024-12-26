@@ -14,7 +14,7 @@ export default function FormButton({
 }: FormButtonProps) {
   return (
     <button
-      className="w-full bg-black text-white px-3 py-2 rounded-md flex justify-center items-center gap-2"
+      className="w-full bg-black text-white px-3 py-2 rounded-md flex justify-center items-center gap-2 disabled:cursor-not-allowed"
       onClick={onClick}
     >
       {text}

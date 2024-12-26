@@ -12,5 +12,5 @@ export default function IncomingMessages() {
       (a, b) => new Date(b.sentAt).getTime() - new Date(a.sentAt).getTime()
     );
 
-  return <MessagesList messages={incomingMessages} />;
+  return <MessagesList messages={incomingMessages} incoming={true} />;
 }

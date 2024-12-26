@@ -24,7 +24,7 @@ export default function NavbarDropdownItem({
     >
       <Link
         to={to}
-        className="w-full hover:bg-slate-100 flex justify-start items-center gap-2 px-2 py-2 text-nowrap relative"
+        className="w-full hover:bg-slate-100 flex justify-start items-center gap-2 px-2 pr-4 py-2 text-nowrap relative"
       >
         <Icon className="text-neutral-500" size={18} />
         {name}

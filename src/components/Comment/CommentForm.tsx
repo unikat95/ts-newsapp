@@ -1,12 +1,14 @@
 import React, { ChangeEvent } from "react";
 
-import CTAButton from "../CTAButton/CTAButton";
+import Button from "../ui/Button/Button";
+import { IoMdCreate } from "react-icons/io";
 
 type CommentFormProps = {
   text: string;
   msg: string;
   handleInputChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   handleSubmit: (e: { preventDefault: () => void }) => Promise<void>;
+  loading?: boolean;
 };
 
 export default function CommentForm({
@@ -14,9 +16,10 @@ export default function CommentForm({
   msg,
   handleInputChange,
   handleSubmit,
+  loading,
 }: CommentFormProps) {
   return (
-    <div className="w-full bg-white h-auto flex flex-col justify-center items-start rounded-xl shadow-[0_1px_30px_0_rgba(0,0,0,0.05)] p-5 gap-5">
+    <form className="w-full bg-white h-auto flex flex-col justify-center items-start rounded-xl shadow-[0_1px_30px_0_rgba(0,0,0,0.05)] p-5 gap-5">
       <div>{text}</div>
       <div className="w-full">
         <textarea
@@ -31,12 +34,15 @@ export default function CommentForm({
         ></textarea>
       </div>
       <div className="w-full flex justify-end items-end">
-        <CTAButton
-          text="Add comment"
+        <Button
           variant="blue"
-          handleSubmit={handleSubmit}
+          onClick={handleSubmit}
+          Icon={IoMdCreate}
+          disabled={!msg}
+          loading={loading}
+          text="Add comment"
         />
       </div>
-    </div>
+    </form>
   );
 }

@@ -59,7 +59,7 @@ export default function UserProfile({
           <div className="w-full">
             <UserInfo user={user} />
           </div>
-          <div className="w-full bg-zinc-100 p-5 mt-5 rounded-md">
+          <div className="w-full bg-zinc-100 flex flex-col gap-3 p-5 mt-5 rounded-md">
             <h3 className="text-lg font-medium text-primary-text flex justify-start items-center gap-1">
               <RiInfoCardLine size={22} />
               About:

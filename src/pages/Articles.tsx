@@ -8,6 +8,7 @@ import APHeading from "../components/AdminPanel/APHeading";
 import useLoading from "../hooks/useLoading";
 import APLoading from "../components/AdminPanel/APLoading";
 import ArticlesCategory from "../components/ArticlesCategory/ArticlesCategory";
+import PageContainer from "../components/PageContainer/PageContainer";
 
 export default function Articles() {
   const { sortedArticles, categoryToDisplay } = useMainContext();
@@ -40,7 +41,7 @@ export default function Articles() {
   if (loading) return <APLoading />;
 
   return (
-    <div className="w-full h-auto flex flex-col justify-start items-start gap-5">
+    <PageContainer>
       <div className="w-full flex justify-between items-center">
         <APHeading text="Article list" />
         <ArticlesCategory
@@ -62,9 +63,9 @@ export default function Articles() {
         </>
       ) : (
         <div className="w-full h-auto flex justify-center items-center p-5">
-          <LoadingSpinner size={24} />
+          <LoadingSpinner size={30} color="blue" />
         </div>
       )}
-    </div>
+    </PageContainer>
   );
 }

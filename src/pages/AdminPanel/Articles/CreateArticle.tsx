@@ -8,10 +8,10 @@ import useLoading from "../../../hooks/useLoading";
 import ArticleCategories from "../../../components/ArticleCategories/ArticleCategories";
 import CreateArticleInput from "../../../components/CreateArticle/CreateArticleInput";
 import APLoading from "../../../components/AdminPanel/APLoading";
-import CTAButton from "../../../components/CTAButton/CTAButton";
 import CreateArticleLoader from "../../../components/CreateArticle/CreateArticleLoader";
 import APHeading from "../../../components/AdminPanel/APHeading";
 import { useNavigate } from "react-router-dom";
+import Button from "../../../components/ui/Button/Button";
 
 export default function CreateArticle() {
   const [formField, setFormField] = useState({
@@ -103,14 +103,15 @@ export default function CreateArticle() {
             onChange={handleEditorChange}
           />
         </div>
-        <CTAButton
-          handleSubmit={handleSubmit}
-          text="Create article"
+        <Button
+          variant="dark"
+          onClick={handleSubmit}
           Icon={IoMdCreate}
           disabled={
             !formField.title || !formField.img || !formField.text || !category
           }
-          variant="dark"
+          loading={isCreating}
+          text="Create article"
         />
         {isCreating && <CreateArticleLoader />}
       </form>

@@ -12,6 +12,7 @@ type CreateCommentProps = {
 export default function CreateComment({ article }: CreateCommentProps) {
   const { currentUser, handleAddComment } = useMainContext();
   const [commentMsg, setCommentMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentMsg(e.target.value);
@@ -19,7 +20,16 @@ export default function CreateComment({ article }: CreateCommentProps) {
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    handleAddComment({ currentUser, commentMsg, article, setCommentMsg });
+
+    if (commentMsg === "") return;
+    setLoading(true);
+    handleAddComment({
+      currentUser,
+      commentMsg,
+      article,
+      setCommentMsg,
+      setLoading,
+    });
   };
 
   return (
@@ -28,6 +38,7 @@ export default function CreateComment({ article }: CreateCommentProps) {
       msg={commentMsg}
       handleInputChange={handleInputChange}
       handleSubmit={handleSubmit}
+      loading={loading}
     />
   );
 }

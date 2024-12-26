@@ -1,23 +1,36 @@
 import React, { ChangeEvent, useState } from "react";
-import CTAButton from "../CTAButton/CTAButton";
 import useMainContext from "../../hooks/useMainContext";
 import { MessagesProps } from "../../context/MainContextTypes";
 import APHeading from "../AdminPanel/APHeading";
+import FormLoader from "../FormLoader/FormLoader";
+import Button from "../ui/Button/Button";
 
 type ReplyFormProps = {
   message: MessagesProps | undefined;
 };
 
 export default function ReplyForm({ message }: ReplyFormProps) {
-  const { currentUser, handleSendReply } = useMainContext();
+  const { currentUser, handleSendReply, setShowPopup, setPopupMessage } =
+    useMainContext();
   const [replyMessage, setReplyMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReplyMessage(e.target.value);
   };
 
   const handleSubmit = async () => {
-    handleSendReply({ message, currentUser, replyMessage, setReplyMessage });
+    setLoading(true);
+    handleSendReply({
+      message,
+      currentUser,
+      replyMessage,
+      setReplyMessage,
+      setShowPopup,
+      setPopupMessage,
+      msg: "Reply successfully sent",
+      setLoading,
+    });
   };
 
   return (
@@ -34,13 +47,14 @@ export default function ReplyForm({ message }: ReplyFormProps) {
           onChange={handleInputChange}
           value={replyMessage}
         ></textarea>
-        <CTAButton
-          text="Send reply"
+        <Button
           variant="blue"
+          onClick={handleSubmit}
           disabled={!replyMessage}
-          handleSubmit={handleSubmit}
+          text="Send reply"
         />
       </form>
+      {loading && <FormLoader />}
     </div>
   );
 }

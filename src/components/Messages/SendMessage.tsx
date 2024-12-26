@@ -4,12 +4,21 @@ import useMainContext from "../../hooks/useMainContext";
 import { UserProps } from "../../context/MainContextTypes";
 import UserAvatar from "../User/UserAvatar/UserAvatar";
 import { IoIosClose } from "react-icons/io";
-import CTAButton from "../CTAButton/CTAButton";
 import FormLoader from "../FormLoader/FormLoader";
 import APHeading from "../AdminPanel/APHeading";
+import { useNavigate } from "react-router-dom";
+import useLoading from "../../hooks/useLoading";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import Button from "../ui/Button/Button";
 
 export default function SendMessage() {
-  const { currentUser, userList, handleSendMessage } = useMainContext();
+  const {
+    currentUser,
+    userList,
+    handleSendMessage,
+    setPopupMessage,
+    setShowPopup,
+  } = useMainContext();
   const [formFields, setFormFields] = useState({
     userId: "",
     user: "",
@@ -19,6 +28,7 @@ export default function SendMessage() {
   const [openUserList, setOpenUserList] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UserProps | null>(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!formFields.user) {
@@ -77,8 +87,20 @@ export default function SendMessage() {
       setFormFields,
       handleClearUser,
       setLoading,
+      setShowPopup,
+      setPopupMessage,
+      msg: "Message successfully sent",
+      navigate,
     });
   };
+
+  const loader = useLoading();
+  if (loader)
+    return (
+      <div className="w-full h-auto flex justify-center items-center p-5">
+        <LoadingSpinner size={25} />
+      </div>
+    );
 
   return (
     <div className="w-full flex flex-col bg-white rounded-lg shadow-[0_1px_30px_0_rgba(0,0,0,0.05)] relative p-5 gap-5">
@@ -145,13 +167,13 @@ export default function SendMessage() {
           value={formFields.message}
           onChange={handleInputChange}
         />
-        <CTAButton
-          text="Send message"
+        <Button
           variant="blue"
+          onClick={handleSubmit}
           disabled={
             !formFields.userId || !formFields.title || !formFields.message
           }
-          handleSubmit={handleSubmit}
+          text="Send message"
         />
       </form>
       {loading && <FormLoader />}

@@ -2,11 +2,11 @@ import React, { ChangeEvent, SetStateAction, useState } from "react";
 
 import Modal from "../../Modal/Modal";
 import CreateArticleInput from "../../CreateArticle/CreateArticleInput";
-import CTAButton from "../../CTAButton/CTAButton";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import useMainContext from "../../../hooks/useMainContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../config/firebase";
+import Button from "../../ui/Button/Button";
 
 type UserEditBackgroundModalProps = {
   isUserBgEditing: boolean;
@@ -81,11 +81,11 @@ export default function EditBackgroundModal({
           </div>
         </div>
         <div className="w-full flex justify-end items-center gap-2">
-          <CTAButton text="Save" variant="dark" onClick={handleSubmit} />
-          <CTAButton
-            text="Cancel"
+          <Button variant="dark" onClick={handleSubmit} text="Save" />
+          <Button
             variant="red"
             onClick={handleToggleUserBgEditor}
+            text="Cancel"
           />
         </div>
       </div>

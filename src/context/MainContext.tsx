@@ -74,6 +74,7 @@ export default function MainProvider({ children }: MainProviderProps) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+  const [articleLoading, setArticleLoading] = useState(false);
 
   if (loading || initializing) return <PageLoading />;
   return (
@@ -104,6 +105,8 @@ export default function MainProvider({ children }: MainProviderProps) {
         setIsModalOpen,
         categoryToDisplay,
         setCategoryToDisplay,
+        articleLoading,
+        setArticleLoading,
 
         sortedArticles,
         sortedUsers,

@@ -1,5 +1,6 @@
 import React from "react";
-import CTAButton from "../CTAButton/CTAButton";
+
+import Button from "../ui/Button/Button";
 
 type APArticleModalProps = {
   handleCloseModal: () => void;
@@ -19,12 +20,8 @@ export default function APArticleModal({
           <p> This action cannot be undone.</p>
         </div>
         <div className="w-full flex items-end justify-end gap-2">
-          <CTAButton
-            text="Confirm"
-            variant="red"
-            onClick={handleDeleteArticle}
-          />
-          <CTAButton text="Cancel" variant="dark" onClick={handleCloseModal} />
+          <Button variant="red" onClick={handleDeleteArticle} text="Confirm" />
+          <Button variant="dark" onClick={handleCloseModal} text="Cancel" />
         </div>
       </div>
     </div>

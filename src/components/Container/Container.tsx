@@ -11,10 +11,7 @@ export default function Container({ children, navbarHeight }: ContainerProps) {
 
   if (location.pathname.startsWith("/admin-panel")) return children;
   return (
-    <div
-      className="w-full max-w-[1400px] flex flex-col justify-start items-start mt-[3.75rem]"
-      style={{ marginTop: navbarHeight }}
-    >
+    <div className="w-full max-w-[1300px]" style={{ marginTop: navbarHeight }}>
       {children}
     </div>
   );

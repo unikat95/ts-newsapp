@@ -5,7 +5,6 @@ import { doc, updateDoc } from "firebase/firestore";
 
 import Modal from "../../Modal/Modal";
 import useMainContext from "../../../hooks/useMainContext";
-import CTAButton from "../../CTAButton/CTAButton";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import EditUserInput from "./EditUserInput";
 import EditUserDatePicker from "./EditUserDatePicker";
@@ -13,6 +12,7 @@ import EditUserAvatar from "./EditUserAvatar";
 
 import { MdSaveAs } from "react-icons/md";
 import { TbCancel } from "react-icons/tb";
+import Button from "../../ui/Button/Button";
 
 type EditUserProfileProps = {
   isUserEditing: boolean;
@@ -35,6 +35,7 @@ export default function EditUserModal({
     lastName: currentUser?.lastName,
     birthDate: currentUser?.birthDate,
     avatar: currentUser?.avatar,
+    about: currentUser?.about,
   });
   const [isSaving, setIsSaving] = useState(false);
 
@@ -45,6 +46,7 @@ export default function EditUserModal({
         lastName: currentUser?.lastName || "",
         birthDate: currentUser?.birthDate || "",
         avatar: currentUser?.avatar || "",
+        about: currentUser?.about || "",
       });
     }
   }, [isUserEditing, currentUser]);
@@ -65,6 +67,7 @@ export default function EditUserModal({
               lastName: formFields.lastName,
               birthDate: formFields.birthDate,
               avatar: formFields.avatar,
+              about: formFields.about,
               completed: true,
             });
             setIsSaving(false);
@@ -79,7 +82,9 @@ export default function EditUserModal({
     }
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
     setFormFields((prev) => ({
@@ -124,27 +129,38 @@ export default function EditUserModal({
                 formField={formFields.avatar}
                 handleInputChange={handleInputChange}
               />
+              <label htmlFor="about" className="w-full flex flex-col gap-2">
+                About:
+                <textarea
+                  name="about"
+                  className="w-full border focus:border-blue-500 p-3 outline-none rounded-md"
+                  value={formFields.about}
+                  onChange={handleInputChange}
+                  cols={30}
+                  rows={5}
+                />
+              </label>
             </div>
           </form>
         </div>
         <div className="w-full flex justify-end items-center gap-2">
-          <CTAButton
-            text="Save"
-            Icon={MdSaveAs}
+          <Button
             variant="dark"
-            handleSubmit={handleSubmit}
+            onClick={handleSubmit}
+            Icon={MdSaveAs}
             disabled={
               !formFields.firstName ||
               !formFields.lastName ||
               !formFields.birthDate
             }
+            text="Save"
           />
           {currentUser?.completed && (
-            <CTAButton
-              text="Cancel"
-              Icon={TbCancel}
+            <Button
               variant="red"
               onClick={handleToggleUserEditor}
+              Icon={TbCancel}
+              text="Cancel"
             />
           )}
         </div>

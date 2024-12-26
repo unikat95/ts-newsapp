@@ -1,8 +1,9 @@
 import React, { SetStateAction } from "react";
+
 import NavbarItem from "./NavbarItem";
 import useMainContext from "../../hooks/useMainContext";
 import NavbarProfile from "./NavbarProfile";
-import { Link } from "react-router-dom";
+import Button from "../ui/Button/Button";
 
 type NavbarMenuProps = {
   openMenu: boolean;
@@ -41,9 +42,9 @@ export default function NavbarMenu({ openMenu, setOpenMenu }: NavbarMenuProps) {
           />
         </>
       ) : (
-        <Link to="/auth" className="bg-black text-white px-4 py-2 rounded-md">
+        <Button variant="dark" to="/auth">
           Login
-        </Link>
+        </Button>
       )}
     </ul>
   );

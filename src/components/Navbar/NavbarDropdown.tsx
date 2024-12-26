@@ -17,6 +17,7 @@ export default function NavbarDropdown() {
     openDropdown,
     handleSignOut,
     setUser,
+    currentUser,
     setCurrentUser,
     setInitializing,
   } = useMainContext();
@@ -59,12 +60,14 @@ export default function NavbarDropdown() {
           to="/profile/messages/incoming-messages"
           setOpenDropdown={setOpenDropdown}
         />
-        <NavbarDropdownItem
-          Icon={MdAdminPanelSettings}
-          name="Admin Panel"
-          to="/admin-panel"
-          setOpenDropdown={setOpenDropdown}
-        />
+        {currentUser?.role === "administrator" && (
+          <NavbarDropdownItem
+            Icon={MdAdminPanelSettings}
+            name="Admin Panel"
+            to="/admin-panel"
+            setOpenDropdown={setOpenDropdown}
+          />
+        )}
         <li className="w-full rounded-md overflow-hidden">
           <button
             onClick={() =>

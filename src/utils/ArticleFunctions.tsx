@@ -44,6 +44,7 @@ export type AddCommentProps = {
   commentMsg: string;
   article: ArticleProps;
   setCommentMsg: React.Dispatch<SetStateAction<string>>;
+  setLoading: React.Dispatch<SetStateAction<boolean>>;
 };
 
 export type AddReplyProps = {
@@ -103,7 +104,11 @@ export const handleLikePost = async ({
   } catch (error) {
     console.log(error);
   } finally {
-    setLikeLoading(false);
+    new Promise(() =>
+      setTimeout(() => {
+        setLikeLoading(false);
+      }, 300)
+    );
   }
 };
 
@@ -143,6 +148,7 @@ export const handleAddComment = async ({
   commentMsg,
   article,
   setCommentMsg,
+  setLoading,
 }: AddCommentProps) => {
   if (currentUser) {
     try {
@@ -154,9 +160,11 @@ export const handleAddComment = async ({
         replies: [],
       };
       setCommentMsg("");
-      await updateDoc(doc(db, "articles", article.id), {
+      await new Promise((res) => setTimeout(res, 1000));
+      updateDoc(doc(db, "articles", article.id), {
         comments: [...article.comments, commentData],
       });
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }

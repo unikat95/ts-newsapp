@@ -12,7 +12,7 @@ export default function RecentArticles() {
         fontSize="text-xl font-medium"
         Icon={MdArticle}
       />
-      <div className="w-full grid lg:grid-cols-2 gap-5 pb-5">
+      <div className="w-full grid lg:grid-cols-2 gap-5">
         <div className="w-full h-[15rem] lg:h-[30rem] col-span-1 relative after:absolute after:w-full after:h-full after:top-0 after:left-0 after:bg-gradient-to-b after:from-transparent after:to-black hover:after:to-slate-950 z-0 group rounded-xl overflow-hidden main-shadow">
           <RecentArticlesItem sortA={0} sortB={1} />
         </div>

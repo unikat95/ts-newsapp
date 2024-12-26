@@ -4,6 +4,7 @@ import { AiOutlineComment } from "react-icons/ai";
 import { FaReply } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { CommentProps } from "../../context/MainContextTypes";
+import useMainContext from "../../hooks/useMainContext";
 
 type ArticleCommentInfoProps = {
   comment: CommentProps;
@@ -18,6 +19,7 @@ export default function CommentInfo({
   handleToggleReplyForm,
   openReply,
 }: ArticleCommentInfoProps) {
+  const { currentUser } = useMainContext();
   return (
     <div className="w-full flex justify-between items-center">
       <div className="flex justify-center items-center gap-2 text-tertiary-text">
@@ -29,16 +31,19 @@ export default function CommentInfo({
           onClick={handleToggleReply}
         >
           <AiOutlineComment size={20} />
-          {comment.replies.length} replies{" "}
+          {comment.replies.length}{" "}
+          {comment.replies.length === 1 ? "reply" : "replies"}
           <IoIosArrowDown className={`${openReply && "rotate-180"}`} />
         </button>
       </div>
-      <button
-        className="flex justify-center items-center gap-1 underline text-sm"
-        onClick={handleToggleReplyForm}
-      >
-        Reply <FaReply />
-      </button>
+      {currentUser && (
+        <button
+          className="flex justify-center items-center gap-1 underline text-sm"
+          onClick={handleToggleReplyForm}
+        >
+          Reply <FaReply />
+        </button>
+      )}
     </div>
   );
 }

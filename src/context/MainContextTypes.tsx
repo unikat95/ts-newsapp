@@ -107,6 +107,8 @@ export type MainContextProps = {
   setCategoryToDisplay: React.Dispatch<SetStateAction<string>>;
   sortedArticles: ArticleProps[];
   sortedUsers: UserProps[] | undefined;
+  articleLoading: boolean;
+  setArticleLoading: React.Dispatch<SetStateAction<boolean>>;
 
   messages: MessagesProps[] | null;
   setMessages: React.Dispatch<SetStateAction<MessagesProps[] | null>>;
@@ -130,12 +132,14 @@ export type MainContextProps = {
     password,
     setLoading,
     setInitializing,
+    setError,
   }: AuthProps) => void;
   handleSignUp: ({
     email,
     password,
     setLoading,
     setInitializing,
+    setError,
   }: AuthProps) => void;
   handleSignOut: ({
     setUser,
@@ -176,6 +180,7 @@ export type MainContextProps = {
     commentMsg,
     article,
     setCommentMsg,
+    setLoading,
   }: AddCommentProps) => Promise<void>;
   handleAddReply: ({
     currentUser,
@@ -193,12 +198,18 @@ export type MainContextProps = {
     setFormFields,
     handleClearUser,
     setLoading,
+    setPopupMessage,
+    msg,
+    navigate,
   }: SendMessageProps) => Promise<void>;
   handleSendReply: ({
     message,
     currentUser,
     replyMessage,
     setReplyMessage,
+    setPopupMessage,
+    msg,
+    setLoading,
   }: SendReplyProps) => Promise<void>;
   handleMarkAsRead: ({
     message,

@@ -12,7 +12,7 @@ export default function AdminPanelHome() {
   if (loading) return <APLoading />;
 
   return (
-    <div className="w-full h-auto flex flex-col justify-start items-start gap-5 p-5 overflow-auto">
+    <div className="w-full h-screen bg-slate-200 flex flex-col justify-start items-start gap-5 p-5 overflow-auto">
       <APStatistics />
       <APLastArticles />
       <APLastUsers />

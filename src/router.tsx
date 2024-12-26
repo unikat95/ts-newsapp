@@ -25,6 +25,7 @@ import SendMessage from "./components/Messages/SendMessage";
 import IncomingMessages from "./components/Messages/IncomingMessages";
 import SentMessages from "./components/Messages/SentMessages";
 import Message from "./components/Message/Message";
+import NotFound from "./pages/NotFound";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -57,6 +58,7 @@ export const router = createBrowserRouter(
         <Route path="sent-messages" element={<SentMessages />} />
         <Route path="send-message" element={<SendMessage />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import useMainContext from "../hooks/useMainContext";
 import MessagesItem from "../components/Messages/MessagesItem";
 import { createMessagesItemsList } from "../components/Messages/MessagesItemsList";
 import useLoading from "../hooks/useLoading";
 import APLoading from "../components/AdminPanel/APLoading";
+import PopupMessage from "../components/PopupMessage/PopupMessage";
 
 export default function Messages() {
-  const { incomingUnreadCount, sentUnreadCount } = useMainContext();
+  const {
+    incomingUnreadCount,
+    sentUnreadCount,
+    popupMessage,
+    showPopup,
+    setShowPopup,
+  } = useMainContext();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const MessagesItemsList = createMessagesItemsList({
     incomingUnreadCount,
     sentUnreadCount,
   });
+
+  useEffect(() => {
+    if (showPopup) {
+      setIsPopupOpen(true);
+      setShowPopup(false);
+    }
+  }, [showPopup]);
 
   const loading = useLoading();
   if (loading) return <APLoading />;
@@ -36,6 +51,11 @@ export default function Messages() {
           <Outlet />
         </div>
       </div>
+      <PopupMessage
+        isOpen={isPopupOpen}
+        setIsOpen={setIsPopupOpen}
+        text={popupMessage}
+      />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import UserProfile from "../components/User/UserProfile/UserProfile";
 import EditBackgroundModal from "../components/User/EditBackgroundModal/EditBackgroundModal";
 import EditUserModal from "../components/User/EditUserModal/EditUserModal";
 import PopupMessage from "../components/PopupMessage/PopupMessage";
+import PageContainer from "../components/PageContainer/PageContainer";
 
 export default function Profile() {
   const { currentUser } = useMainContext();
@@ -32,7 +33,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-start items-end gap-5">
+    <PageContainer>
       <UserProfile
         user={currentUser}
         handleToggleUserBgEditor={handleToggleUserBgEditor}
@@ -59,6 +60,6 @@ export default function Profile() {
         setIsOpen={setIsPopupOpen}
         text={popupText}
       />
-    </div>
+    </PageContainer>
   );
 }

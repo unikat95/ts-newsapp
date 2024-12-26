@@ -25,7 +25,7 @@ export default function AdminPanel() {
   return (
     <div className="w-full h-full flex">
       <Sidebar />
-      <div className="w-full h-[100dvh] bg-slate-200 flex flex-col justify-start overflow-y-hidden">
+      <div className="w-full h-[100dvh] bg-white  flex flex-col justify-start overflow-y-hidden">
         <Outlet />
       </div>
       <PopupMessage

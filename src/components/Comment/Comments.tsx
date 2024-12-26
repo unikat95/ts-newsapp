@@ -11,7 +11,7 @@ type ArticleCommentsProps = {
 };
 
 export default function Comments({ author, article }: ArticleCommentsProps) {
-  const { userList } = useMainContext();
+  const { userList, currentUser } = useMainContext();
 
   return (
     <div className="w-full flex flex-col gap-5">
@@ -36,7 +36,7 @@ export default function Comments({ author, article }: ArticleCommentsProps) {
           </div>
         )}
       </div>
-      <CreateComment article={article} />
+      {currentUser && <CreateComment article={article} />}
     </div>
   );
 }

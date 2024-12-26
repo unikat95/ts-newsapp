@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 import useMainContext from "../../../hooks/useMainContext";
 import useLoading from "../../../hooks/useLoading";
-import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 import APLoading from "../../../components/AdminPanel/APLoading";
 import APSearch from "../../../components/AdminPanel/APSearch";
 import APArticleDropdown from "../../../components/AdminPanel/APArticleDropdown";
 import { debounce } from "lodash";
 import ListItem from "../../../components/ListItem/ListItem";
 import APHeading from "../../../components/AdminPanel/APHeading";
+import ListLoader from "../../../components/ListLoader/ListLoader";
 
 export default function ArticleList() {
   const { sortedArticles } = useMainContext();
@@ -45,9 +45,7 @@ export default function ArticleList() {
           <div className="w-full h-full flex flex-col justify-start items-center gap-1">
             {artLoading ? (
               <>
-                <div className="w-full h-auto flex justify-center items-center p-5">
-                  <LoadingSpinner size={20} />
-                </div>
+                <ListLoader size={30} color="blue" />
               </>
             ) : (
               <>

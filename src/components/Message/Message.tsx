@@ -9,6 +9,8 @@ import MessageBody from "./MessageBody";
 
 import Reply from "./Reply";
 import ReplyForm from "./ReplyForm";
+import useLoading from "../../hooks/useLoading";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default function Message() {
   const { currentUser, messages, userList, handleMarkAsRead } =
@@ -22,6 +24,14 @@ export default function Message() {
       handleMarkAsRead({ message, currentUser });
     }
   }, [message, currentUser]);
+
+  const loading = useLoading();
+  if (loading)
+    return (
+      <div className="w-full h-auto flex justify-center items-center p-5">
+        <LoadingSpinner size={25} />
+      </div>
+    );
 
   return (
     <div className="w-full flex flex-col gap-5">
